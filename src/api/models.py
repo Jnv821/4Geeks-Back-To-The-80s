@@ -44,3 +44,15 @@ class Artist(db.Model):
             "id": self.id,
             "spotify_url" : self.spotify_url
         }
+
+class Album(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    spotify_url = db.Column(db.String(2048), unique=True, nullable=False)
+    def __repr__(self):
+        return f'<Alubm {self.id} - {self.spotify_url}>'
+    def serialize(self):
+        return {
+            "id": self.id,
+            "spotify_url": self.spotify_url
+        }
+
