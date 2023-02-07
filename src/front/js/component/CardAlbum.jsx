@@ -23,11 +23,29 @@ const CardCharacter = (props) => {
   if (char !== {}) {
     return (
       <div className="card">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/26/26789.png"
-          className="card-img-top"
-          alt="alt"
-        />
+        <div className="album-cover">
+          <button
+            className={`btn btn-outline-primary likeButton ${
+              favorite ? "selected" : null
+            }`}
+            onClick={(ev) => {
+              if (favorite === false) {
+                actions.addFavorite(char.name);
+                setFavorite(true);
+              } else if (favorite === true) {
+                actions.deleteFavorite(char.name);
+                setFavorite(false);
+              }
+            }}
+          >
+            <i className="fa-regular fa-heart"></i>
+          </button>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
+            className="card-img-top"
+            alt="alt"
+          />
+        </div>
         <div className="card-body">
           <p className="card-text">
             <div>
@@ -53,22 +71,6 @@ const CardCharacter = (props) => {
             >
               Details
             </Link>
-            <button
-              className={`btn btn-outline-primary likeButton ${
-                favorite ? "selected" : null
-              }`}
-              onClick={(ev) => {
-                if (favorite === false) {
-                  actions.addFavorite(char.name);
-                  setFavorite(true);
-                } else if (favorite === true) {
-                  actions.deleteFavorite(char.name);
-                  setFavorite(false);
-                }
-              }}
-            >
-              <i className="fa-regular fa-heart"></i>
-            </button>
           </div>
         </div>
       </div>
