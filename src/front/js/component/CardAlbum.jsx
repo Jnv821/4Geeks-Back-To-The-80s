@@ -9,7 +9,7 @@ const CardCharacter = (props) => {
   const [favorite, setFavorite] = useState(false);
   const { store, actions } = useContext(Context);
 
-  // el objeto personaje de esta card se llama char
+  // fetch to album
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -40,11 +40,16 @@ const CardCharacter = (props) => {
           >
             <i className="fa-regular fa-heart"></i>
           </button>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
-            className="card-img-top"
-            alt="alt"
-          />
+          <Link
+            to={`/single/${uid}`}
+            className="btn btn-outline-primary learnMoreButton"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
+              className="card-img-top"
+              alt="alt"
+            />
+          </Link>
         </div>
         <div className="card-body">
           <p className="card-text">
@@ -67,10 +72,8 @@ const CardCharacter = (props) => {
           <div>
             <Link
               className="btn btn-outline-primary learnMoreButton"
-              to={`/single/people/${uid}`}
-            >
-              Details
-            </Link>
+              to={`/single/${uid}`}
+            />
           </div>
         </div>
       </div>
