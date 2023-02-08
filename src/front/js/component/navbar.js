@@ -1,19 +1,70 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext"; // trsaigo todos los datos y funciones definidas en appContext.js
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+  const { store, actions } = useContext(Context);
+
+  if (store.favorites != undefined) {
+    return (
+      <nav className="navbar navbar-light bg-light mb-3">
+        <Link to="/">
+          <img
+            className="main-logo"
+            src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png"
+          />
+        </Link>
+        <div className="ml-auto">
+          <div className="dropdown">
+            <button
+              className="btn btn-primary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              Favorites {store.favorites.length}
+            </button>
+            <ul className="dropdown-menu">
+              {store.favorites.map((name, index) => {
+                return (
+                  <li className="dropdown-item" key={index}>
+                    {name}{" "}
+                    <i
+                      className="fa-regular fa-trash-can"
+                      onClick={() => actions.deleteFavorite(name)}
+                    ></i>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    );
+  } else {
+    return (
+      <nav className="navbar navbar-light bg-light mb-3">
+        <Link to="/">
+          <img
+            className="main-logo"
+            src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png"
+          />
+        </Link>
+        <div className="ml-auto">
+          <Link to="/demo">
+            <div className="dropdown">
+              <button
+                className="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Loading...
+              </button>
+            </div>
+          </Link>
+        </div>
+      </nav>
+    );
+  }
 };
