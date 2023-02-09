@@ -15,6 +15,8 @@ from api.commands import setup_commands
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
+SPOTIFY_CLIENT_KEY=os.getenv("SPOTIFY_CLIENT_KEY")
+SPOTIFY_SECRET=os.getenv("SPOTIFY_SECRET")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -96,7 +98,7 @@ def run_every_n_times(delay, task):
 
 # Create the thread to run the spotify token getter.
 
-threading.Thread(target=lambda : run_every_n_times(3600, generate_token(client_id, secret)))
+threading.Thread(target=lambda : run_every_n_times(3600, generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)))
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
