@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os
+import os, base64, time, threading
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -63,6 +63,25 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+# Function to encode, decode send and get the request token 
+
+def generate_token(client_id, secret):
+    # Transform client_id:secret into bytes to encode into 64 then decode to sring.
+    token_bytes = f"{client_id}:{secret}".encode("ascii")
+    base64_token = base64.b64encode(token_bytes)
+    ready_token = base64_token.decode("ascii")
+    print(ready_token)
+    # Make the request and its options
+    headers =  {
+        'Authorization': f"Basic {ready_token}",
+        'Contet-Type': 'application/x-www-form-urlencoded'
+    }
+    data = {
+        'grant_type': 'client_credentials'
+    }
+    req = requests.post("https://accounts.spotify.com/api/token", headers=headers, data=data)
+    global spotify_token 
+    spotify_token = req.json()
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
