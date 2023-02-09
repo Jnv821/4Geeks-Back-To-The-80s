@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os, base64, time, threading
+import os, base64, time, threading, traceback
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -83,6 +83,20 @@ def generate_token(client_id, secret):
     global spotify_token 
     spotify_token = req.json()
 
+def run_every_n_times(delay, task):
+    next_time = time.time() + delay
+    while True:
+        time.sleep(max(0 , next_time - time.time()))
+    try:
+        task()
+    except Exception():
+        traceback.print_exc()
+    # Skip the task if we are behind the schedule
+    next_time += (time.time() - next_time) // delay * delay + delay
+
+# Create the thread to run the spotify token getter.
+
+threading.Thread(target=lambda : run_every_n_times(3600, generate_token(client_id, secret)))
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
