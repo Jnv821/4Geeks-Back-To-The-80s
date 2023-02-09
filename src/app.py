@@ -99,6 +99,7 @@ def run_every_n_times(delay, task):
 # Create the thread to run the spotify token getter.
 
 threading.Thread(target=lambda : run_every_n_times(3600, generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)))
+
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
