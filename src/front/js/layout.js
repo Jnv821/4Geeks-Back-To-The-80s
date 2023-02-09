@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Login} from "./pages/login.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -20,8 +21,8 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
                     <Routes>
+                        <Route element={<Login />} path="/login"/>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
