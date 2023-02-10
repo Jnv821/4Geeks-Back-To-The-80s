@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os, base64, time, threading, traceback
+import os, requests, base64, time, threading, traceback
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -72,7 +72,6 @@ def generate_token(client_id, secret):
     token_bytes = f"{client_id}:{secret}".encode("ascii")
     base64_token = base64.b64encode(token_bytes)
     ready_token = base64_token.decode("ascii")
-    print(ready_token)
     # Make the request and its options
     headers =  {
         'Authorization': f"Basic {ready_token}",
@@ -82,23 +81,27 @@ def generate_token(client_id, secret):
         'grant_type': 'client_credentials'
     }
     req = requests.post("https://accounts.spotify.com/api/token", headers=headers, data=data)
+    # Expose spotify_token to the app and other modules.
     global spotify_token 
     spotify_token = req.json()
 
-def run_every_n_times(delay, task):
+
+def run_every_n_seconds(delay, task):
     next_time = time.time() + delay
     while True:
-        time.sleep(max(0 , next_time - time.time()))
-    try:
-        task()
-    except Exception():
-        traceback.print_exc()
-    # Skip the task if we are behind the schedule
-    next_time += (time.time() - next_time) // delay * delay + delay
+        time.sleep(max(0, next_time - time.time()))
+        try:
+            task()
+        except Exception:
+            traceback.print_exc()
+        # skip tasks if we are behind schedule:
+        next_time += (time.time() - next_time) // delay * delay + delay
 
+# Generate token on startup
+generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)
 # Create the thread to run the spotify token getter.
+threading.Thread(target=lambda: run_every_n_seconds(3600, lambda : generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET))).start()
 
-threading.Thread(target=lambda : run_every_n_times(3600, generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)))
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

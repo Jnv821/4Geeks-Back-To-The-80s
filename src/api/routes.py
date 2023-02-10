@@ -1,9 +1,10 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint, spotify_token
+from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
+import app 
 
 api = Blueprint('api', __name__)
 
@@ -20,8 +21,6 @@ def handle_hello():
 @api.route('/token', methods=['GET'])
 def get_token():
     
-    response_body = {
-        "token": spotify_token
-    }
+    response_body = app.spotify_token
 
     return jsonify(response_body), 200
