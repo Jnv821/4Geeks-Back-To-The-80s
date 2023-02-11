@@ -1,18 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext"; // trsaigo todos los datos y funciones definidas en appContext.js
+import logo from "../../img/Back_to_80_logo.png";
 
-export const Navbar = () => {
+const Navbar = () => {
   const { store, actions } = useContext(Context);
 
   if (store.favorites != undefined) {
     return (
       <nav className="navbar navbar-light bg-light mb-3">
         <Link to="/">
-          <img
-            className="main-logo"
-            src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png"
-          />
+          <img className="main-logo" src={logo} />
         </Link>
         <div className="ml-auto">
           <div className="dropdown">
@@ -45,10 +43,7 @@ export const Navbar = () => {
     return (
       <nav className="navbar navbar-light bg-light mb-3">
         <Link to="/">
-          <img
-            className="main-logo"
-            src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png"
-          />
+          <img className="main-logo" src={logo} />
         </Link>
         <div className="ml-auto">
           <Link to="/demo">
@@ -68,3 +63,5 @@ export const Navbar = () => {
     );
   }
 };
+
+export default Navbar;
