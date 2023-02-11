@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
-import { Login} from "./pages/login.jsx";
+import { Login } from "./pages/login.jsx";
 import injectContext from "./store/appContext";
 import { Register} from "./pages/Register.jsx";
 
@@ -17,22 +17,19 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
-    return (
-        <div>
-            <BrowserRouter basename={basename}>
-                <ScrollToTop>
-                    <Routes>
-                        <Route element={<Login />} path="/login"/>
-                        <Route element={<Register />} path="/register"/>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
-                    </Routes>
-                    <Footer />
-                </ScrollToTop>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <BrowserRouter basename={basename}>
+      <ScrollToTop>
+        <Routes>
+          <Route element={<Login />} path="/login" />
+          <Route element={<Home />} path="/" />
+          <Route element={<Single />} path="/single/:theid" />
+          <Route element={<h1>Not found!</h1>} />
+        </Routes>
+        <Footer />
+      </ScrollToTop>
+    </BrowserRouter>
+  );
 };
 
 export default injectContext(Layout);
