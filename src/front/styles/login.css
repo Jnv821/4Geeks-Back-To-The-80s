@@ -1,9 +1,16 @@
+.form-login {
+margin-left: 40%;
+margin-right: 40%;
+text-align: center;
+}
+
 .h-100 {
   background: black;
 }
 footer {
   color: #56f6c6;
 }
+
 h4 {
   padding-bottom: 5%;
   color: #56f6c6;
@@ -11,16 +18,20 @@ h4 {
 .sign {
   padding-top: 5%;
 }
-.btn {
-  background-color: #56f6c6;
+
+.btn-login{
+    background-color: #56F6C6; 
+    border-radius: 15%;
+    height: 40px; 
+    width: 70px;
+   
 }
-.register {
-  padding-top: 10%;
-  color: white;
-}
-.text-center {
-  margin-left: 40%;
-  margin-right: 40%;
-  padding-top: 5%;
-  padding-bottom: 20%;
+.register{
+    padding-top: 10%;
+    color: white;
+}   
+.container-login{
+    padding-top: 10%;
+    margin-bottom: 3%;
+    height: 750px;
 }
