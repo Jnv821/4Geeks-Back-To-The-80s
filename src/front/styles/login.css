@@ -19,9 +19,9 @@ h4{
 }
 .btn-login{
     background-color: #56F6C6; 
-    border-radius: 15%;
+    border-radius: 15px;
     height: 40px; 
-    width: 70px;
+    width: 100px;
    
 }
 .register{
