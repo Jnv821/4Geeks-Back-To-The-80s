@@ -16,6 +16,7 @@ class User(db.Model):
     username = db.Column(db.String(32), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    description = db.Column(db.String(255), unique=False, nullable=True)
     favorited_songs = db.relationship('Song',secondary=favorites, backref='favorited_by')
     favorited_albums = db.relationship('Album', secondary=favorites, backref='favorited_by')
     favorited_artists = db.relationship('Artist', secondary=favorites, backref='favorited_by')

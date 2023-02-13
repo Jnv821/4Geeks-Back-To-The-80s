@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login.jsx";
+import { Profile } from "./pages/profile.jsx"
 import injectContext from "./store/appContext";
 import { Register} from "./pages/Register.jsx";
 
@@ -24,6 +25,7 @@ const Layout = () => {
           <Route element={<Login />} path="/login" />
           <Route element={<Home />} path="/" />
           <Route element={<Single />} path="/single/:theid" />
+          <Route element={<Profile />} path="/user/:id" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
         <Footer />
