@@ -25,6 +25,10 @@ export const Register = () => {
               <label for="exampleInputPassword1" className="form-label">Confirm Password</label>
               <input type="password" className="form-control" id="exampleInputPassword1"/>
             </div>
+            <div class="form-group">
+               <label for="exampleFormControlTextarea1">Descriptions</label>
+               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Cuéntanos tu tipo de música favorita de los 80's, artistas, álbums ..."></textarea>
+            </div>
             <div className="mb-3 form-check">
               <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
               <label className="form-check-label" for="exampleCheck1">Check me out</label>

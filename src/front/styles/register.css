@@ -3,6 +3,10 @@
     margin-left: 30%;
     margin-right: 30%;
 }
+.container-login{
+    padding-top: 8%;
+}
+
 .form-label{
     color:  #56F6C6;
 }
@@ -26,4 +30,8 @@ width: 200px;
 .form-check-input:checked {
     border-color:none !important;
     background-color: #56F6C6;
+}
+.form-group{
+    color:  #56F6C6;
+    margin-bottom: 2%;
 }
