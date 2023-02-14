@@ -1,9 +1,12 @@
 .form-login {
-margin-left: 40%;
-margin-right: 40%;
 text-align: center;
 }
-
+.col-lg-12 {
+  flex: 0 0 auto;
+  width: 20%;
+  margin: auto;
+  display: inline-table;
+}
 .h-100 {
   background: black;
 }

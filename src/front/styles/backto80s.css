@@ -1,0 +1,37 @@
+.container-backto80{
+    background: rgb(36,2,146);
+    background: radial-gradient(circle, rgba(36,2,146,1) 0%, rgba(144,46,235,0.3925945378151261) 100%);
+    background-repeat: no-repeat;
+    background-size: cover ;
+    height: 90%;
+}
+.text-view-principal{
+    color: black;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 5%;
+}
+.tittle{
+    font-size: 4.5rem;
+    background: linear-gradient(#56f6c6,#a6029b);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+.description{
+    font-size: 1.5rem;
+    margin-top: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(#56f6c6,#a6029b);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+.logo-80s{
+    width: 150px;
+}
+.btn-view-principal{
+    height: 40px; 
+    width: 100px;
+    margin-top: 2%;
+    background-color: #56F6C6; 
+    border-radius: 15px;
+}

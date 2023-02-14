@@ -11,6 +11,7 @@ import { Register} from "./pages/Register.jsx";
 
 
 import { Footer } from "./component/footer";
+import { Backto80s } from "./pages/Backto80s.jsx";
 
 //create your first component
 const Layout = () => {
@@ -23,6 +24,8 @@ const Layout = () => {
       <ScrollToTop>
         <Routes>
           <Route element={<Login />} path="/login" />
+          <Route element={<Backto80s />} path="/backto80s" />
+          <Route element={<Register />} path="/register" />
           <Route element={<Home />} path="/" />
           <Route element={<Single />} path="/single/:theid" />
           <Route element={<Profile />} path="/user/:id" />
