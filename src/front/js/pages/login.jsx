@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/login.css";
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
     const { store, actions } = useContext(Context);
@@ -21,7 +22,7 @@ export const Login = () => {
                    <div className="sign">
                      <button type="button" class="btn-login">Login</button>
                    </div>
-                   <div className="register">Si todavía no tienes cuenta, regístrate <a href="https://3000-sandrafepu-4geeksbackto-myrcc58a506.ws-eu86.gitpod.io/register">aquí</a></div>
+                   <div className="register">Si todavía no tienes cuenta, regístrate <Link to="/register">aquí </Link></div>
           </div>
         </div> 
       </div>
