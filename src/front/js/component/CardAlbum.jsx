@@ -38,7 +38,7 @@ const CardCharacter = (props) => {
               }
             }}
           >
-            <i className="fa-regular fa-heart"></i>
+            ♡
           </button>
           <Link
             to={`/single/${uid}`}
@@ -69,12 +69,6 @@ const CardCharacter = (props) => {
               <p>1982</p>
             </div>
           </p>
-          <div>
-            <Link
-              className="btn btn-outline-primary learnMoreButton"
-              to={`/single/${uid}`}
-            />
-          </div>
         </div>
       </div>
     );
