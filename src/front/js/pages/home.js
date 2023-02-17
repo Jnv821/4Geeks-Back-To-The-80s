@@ -4,6 +4,16 @@ import CardCharacter from "../component/CardAlbum.jsx";
 import Navbar from "../component/navbar.js";
 
 export const Home = () => {
+  let [token, setToken] = useState("");
+  useEffect(() => {
+    fetch(
+      "https://3001-jrdelrio-4geeksbacktoth-6ahzti1ytn9.ws-us86.gitpod.io/api/token"
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   // fetch de la data de personajes
   let [masterList, setMasterList] = useState([]);
   useEffect(() => {
@@ -11,12 +21,13 @@ export const Home = () => {
       .then((res) => res.json())
       .then((data) => setMasterList(data.results))
       .catch((err) => console.error(err));
-  }, []);
+  }, [token]);
   // console.log(masterList)
 
   return (
     <>
       <Navbar />
+
       <div className="mt-5 home-wrapper">
         {/*pop section*/}
         <section className="charactersSection">
@@ -24,7 +35,10 @@ export const Home = () => {
           <div className="row flex-row flex-nowrap rowSection">
             {masterList.map((charUrl, index) => {
               return (
-                <div className="col-2" key={index}>
+                <div
+                  className="col-xs-6 col-sm-4 col-md-2 col-lg-2"
+                  key={index}
+                >
                   <CardCharacter className="CardCharacter" url={charUrl.url} />
                 </div>
               );
@@ -37,7 +51,10 @@ export const Home = () => {
           <div className="row flex-row flex-nowrap rowSection">
             {masterList.map((charUrl, index) => {
               return (
-                <div className="col-2" key={index}>
+                <div
+                  className="col-xs-6 col-sm-4 col-md-2 col-lg-2"
+                  key={index}
+                >
                   <CardCharacter className="CardCharacter" url={charUrl.url} />
                 </div>
               );
@@ -50,7 +67,10 @@ export const Home = () => {
           <div className="row flex-row flex-nowrap rowSection">
             {masterList.map((charUrl, index) => {
               return (
-                <div className="col-2" key={index}>
+                <div
+                  className="col-xs-6 col-sm-4 col-md-2 col-lg-2"
+                  key={index}
+                >
                   <CardCharacter className="CardCharacter" url={charUrl.url} />
                 </div>
               );
@@ -63,7 +83,10 @@ export const Home = () => {
           <div className="row flex-row flex-nowrap rowSection">
             {masterList.map((charUrl, index) => {
               return (
-                <div className="col-2" key={index}>
+                <div
+                  className="col-xs-6 col-sm-4 col-md-2 col-lg-2"
+                  key={index}
+                >
                   <CardCharacter className="CardCharacter" url={charUrl.url} />
                 </div>
               );

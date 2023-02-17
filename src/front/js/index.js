@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 //include your index.scss file into the bundle
 import "../styles/index.css";
 import "../styles/cardStyle.css";
+import "../styles/home.css";
+import "../styles/navbarStyle.css";
 
 //import your own components
 import Layout from "./layout";
