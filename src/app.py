@@ -98,9 +98,9 @@ def run_every_n_seconds(delay, task):
         next_time += (time.time() - next_time) // delay * delay + delay
 
 # Generate token on startup
-generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)
+#generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)
 # Create the thread to run the spotify token getter.
-threading.Thread(target=lambda: run_every_n_seconds(3600, lambda : generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET))).start()
+#threading.Thread(target=lambda: run_every_n_seconds(3600, lambda : generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET))).start()
 
 
 # this only runs if `$ python src/main.py` is executed
