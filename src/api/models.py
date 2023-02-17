@@ -31,12 +31,21 @@ class User(db.Model):
 
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    author = db.Column(db.String(255), nullable=False)
+    release_year = db.Column(db.Integer, nullable=False)
     spotify_url = db.Column(db.String(2048), unique=True, nullable=False)
+    
     def __repr__(self):
-        return f'<Alubm {self.id} - {self.spotify_url}>'
+        return f'<Alubm {self.title} [{self.id}] - {self.spotify_url}>'
+    
     def serialize(self):
         return {
             "id": self.id,
+            "title": self.title,
+            "author": self.author,
+            "release_year": self.release_year,
             "spotify_url": self.spotify_url
         }
+
 
