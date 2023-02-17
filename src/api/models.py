@@ -4,11 +4,11 @@ db = SQLAlchemy()
 
 favorites = db.Table('favorites',
     db.Column('favorite_id', db.Integer, primary_key=True),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
     db.Column('album_id', db.Integer, db.ForeignKey('album.id')),
 )
 
-class User(db.Model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(32), unique=True, nullable=False)
