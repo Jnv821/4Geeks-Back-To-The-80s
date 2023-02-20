@@ -34,7 +34,7 @@ def setup_commands(app):
         print("Adding the album to the database")
         for Album_register in Album_list:
             album = Album()
-            album.author = Album_register["artist"]
+            album.artist = Album_register["artist"]
             album.title = Album_register["album"]
             album.release_year = Album_register["year"]
             album.spotify_url = Album_register["link_api_spotify"]
