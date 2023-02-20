@@ -33,7 +33,7 @@ class Users(db.Model):
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    author = db.Column(db.String(255), nullable=False)
+    artist = db.Column(db.String(255), nullable=False)
     release_year = db.Column(db.Integer, nullable=False)
     album_cover = db.Column(db.String(2048), nullable=False)
     spotify_url = db.Column(db.String(2048), unique=True, nullable=False)

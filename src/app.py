@@ -109,7 +109,7 @@ def run_every_n_seconds(delay, task):
 # This line is for debugging and development purposes only. 
 # Once the code is ready for production we will delete this conditional.
 # Only change spotify_Connection to true or false.
-spotify_connection = True
+spotify_connection = False
 
 if spotify_connection == True:
     # Generate token on startup
