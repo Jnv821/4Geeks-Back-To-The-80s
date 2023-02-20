@@ -97,10 +97,16 @@ def run_every_n_seconds(delay, task):
         # skip tasks if we are behind schedule:
         next_time += (time.time() - next_time) // delay * delay + delay
 
-# Generate token on startup
-generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)
-# Create the thread to run the spotify token getter.
-threading.Thread(target=lambda: run_every_n_seconds(3600, lambda : generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET))).start()
+# This line is for debugging and development purposes only. 
+# Once the code is ready for production we will delete this conditional.
+# Only change spotify_Connection to true or false.
+spotify_connection = True
+
+if spotify_connection == True:
+    # Generate token on startup
+    generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET)
+    # Create the thread to run the spotify token getter.
+    threading.Thread(target=lambda: run_every_n_seconds(3600, lambda : generate_token(SPOTIFY_CLIENT_KEY, SPOTIFY_SECRET))).start()
 
 
 # this only runs if `$ python src/main.py` is executed
