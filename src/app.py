@@ -56,15 +56,6 @@ def sitemap():
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
 
-@app.route("/albums", methods=["GET"])
-def get_album ():
-    albums = Album.query.all()
-    albums_list = [album.serialize() for album in albums]
-    response= {
-        "albums" : albums_list
-    }
-    return jsonify(response)
-
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
