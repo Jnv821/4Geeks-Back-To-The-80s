@@ -44,19 +44,20 @@ def get_album_by_year(year):
 @api.route('/albums/<int:id>', methods=['GET'])
 def get_album_by_id(id):
     album = Album.query.get(id)
+    try: 
+        response = {
+            "album": album.serialize()
+        }
+        return jsonify(response)
+    except AttributeError:
+        return({"Error" : "The album requested for was either deleted or has not been created yet."})
 
-    response = {
-        "album": album.serialize()
-    } 
-    # Error handling
-    if response["album"] == []:
-        return jsonify({"Error: The album with the id provided does not exist. Make sure the id is not hardcoded."}), 404
-
-    return jsonify(response,), 200
+    return jsonify(response), 200
 
 @api.route('/token', methods=['GET'])
 def get_token():
-    
-    response_body = app.spotify_token
-
-    return jsonify(response_body), 200
+    try:    
+        response = app.spotify_token
+        return jsonify(response), 200
+    except AttributeError:
+        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
