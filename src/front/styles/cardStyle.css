@@ -33,6 +33,12 @@
   background-color: yellow;
 }
 
+.selected:hover {
+  border: rgba(0, 0, 0, 0) !important;
+  background-color: yellow !important;
+  color: red;
+}
+
 .learnMoreButton {
   padding: 2px;
   border: none;
