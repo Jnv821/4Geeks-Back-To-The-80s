@@ -37,23 +37,26 @@ def get_album_by_year(year):
     }
     # Error handling
     if response["albums"] == []:
-        return jsonify({"Error": "The year you provided is not in range."}), 400
+        return jsonify({"Error": "The year you provided is not in range. Make sure the year is between 1980 and 1989"}), 404
 
     return jsonify(response), 200
 
 @api.route('/albums/<int:id>', methods=['GET'])
 def get_album_by_id(id):
     album = Album.query.get(id)
-
-    response = {
-        "album": album.serialize()
-    } 
-
-    return jsonify(response,), 200
+    try: 
+        response = {
+            "album": album.serialize()
+        }
+        return jsonify(response)
+    except AttributeError:
+        return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
+    return jsonify(response), 200
 
 @api.route('/token', methods=['GET'])
 def get_token():
-    
-    response_body = app.spotify_token
-
-    return jsonify(response_body), 200
+    try:    
+        response = app.spotify_token
+        return jsonify(response), 200
+    except AttributeError:
+        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
