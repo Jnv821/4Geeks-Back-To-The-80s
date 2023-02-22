@@ -37,7 +37,7 @@ def get_album_by_year(year):
     }
     # Error handling
     if response["albums"] == []:
-        return jsonify({"Error": "The year you provided is not in range."}), 400
+        return jsonify({"Error": "The year you provided is not in range. Make sure the year is between 1980 and 1989"}), 404
 
     return jsonify(response), 200
 
@@ -48,6 +48,9 @@ def get_album_by_id(id):
     response = {
         "album": album.serialize()
     } 
+    # Error handling
+    if response["album"] == []:
+        return jsonify({"Error: The album with the id provided does not exist. Make sure the id is not hardcoded."}), 404
 
     return jsonify(response,), 200
 
