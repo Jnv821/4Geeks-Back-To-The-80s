@@ -50,8 +50,7 @@ def get_album_by_id(id):
         }
         return jsonify(response)
     except AttributeError:
-        return({"Error" : "The album requested for was either deleted or has not been created yet."})
-
+        return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
 @api.route('/token', methods=['GET'])
