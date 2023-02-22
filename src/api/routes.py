@@ -27,7 +27,7 @@ def get_album ():
     }
     return jsonify(response), 200
 
-@api.route('/albums/<int:year>', methods=["GET"])
+@api.route('/albums/year/<int:year>', methods=["GET"])
 def get_album_by_year(year):
     albums = Album.query.filter_by(release_year=year)
     albums_list = [album.serialize() for album in albums]
@@ -40,6 +40,16 @@ def get_album_by_year(year):
         return jsonify({"Error": "The year you provided is not in range."}), 400
 
     return jsonify(response), 200
+
+@api.route('/albums/<int:id>', methods=['GET'])
+def get_album_by_id(id):
+    album = Album.query.get(id)
+
+    response = {
+        "album": album.serialize()
+    } 
+
+    return jsonify(response,), 200
 
 @api.route('/token', methods=['GET'])
 def get_token():
