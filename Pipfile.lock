@@ -434,6 +434,7 @@
             ],
             "index": "pypi",
             "version": "==2.9.5"
+
         },
         "pyjwt": {
             "hashes": [
