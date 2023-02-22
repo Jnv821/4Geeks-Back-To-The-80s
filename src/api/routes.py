@@ -4,7 +4,16 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users
 from api.utils import generate_sitemap, APIException
-import app 
+import app
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import JWTManager
+
+app = Flask(__name__)
+
+# Setup the Flask-JWT-Extended extension
+app.config["JWT_SECRET_KEY"] = "super-secret"
+jwt = JWTManager(app)
 
 api = Blueprint('api', __name__)
 
@@ -18,8 +27,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/token', methods=['GET'])
-def get_token():
+@api.route('/token', methods=['POST'])
+def create_token():
     
     response_body = app.spotify_token
 

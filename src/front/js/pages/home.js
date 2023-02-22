@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import Navbar from "../component/navbar.js";
 import Section from "../component/Section.jsx";
+import { Footer } from "../component/footer.js";
 
 export const Home = () => {
   let [token, setToken] = useState("");
@@ -39,6 +40,7 @@ export const Home = () => {
       <div className="mt-5 home-wrapper">
         <ul>{sections}</ul>
       </div>
+      <Footer />
     </>
   );
 };
