@@ -22,7 +22,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-=======
+
 @api.route("/albums", methods=["GET"])
 def get_album ():
     albums = Album.query.all()
@@ -58,11 +58,14 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route('/token', methods=['GET'])
-def get_token():
-    try:    
-        response = app.spotify_token
-        return jsonify(response), 200
-    except AttributeError:
-        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
->>>>>>> 79d2e99da943a97e56862b7435c246230e3b9d93
+@api.route("/token", methods=["POST"])
+def create_token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    
+    if username != "test" or password != "test":
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=username)
+    return jsonify(access_token=access_token)
+
