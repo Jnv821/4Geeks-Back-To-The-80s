@@ -69,10 +69,3 @@ def create_token():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
 
-@api.route('/token/spotify', methods=['GET'])
-def get_token():
-    try:    
-        response = app.spotify_token
-        return jsonify(response), 200
-    except AttributeError:
-        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
