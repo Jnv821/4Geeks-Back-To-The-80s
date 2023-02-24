@@ -38,7 +38,7 @@ export const Home = () => {
     <>
       <Navbar />
       <div className="mt-5 home-wrapper">
-        <ul>{sections}</ul>
+        <ul className="sections-list">{sections}</ul>
       </div>
       <Footer />
     </>
