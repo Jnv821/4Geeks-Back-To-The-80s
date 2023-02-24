@@ -18,10 +18,15 @@
 }
 .rowSection {
   overflow-x: scroll;
+
   width: 100%;
 }
 .text-center {
   margin-right: 8vw;
   margin-left: 8vw;
   width: 200px;
+}
+
+.sections-list {
+  list-style-type: none;
 }
