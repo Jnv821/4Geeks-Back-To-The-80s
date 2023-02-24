@@ -40,6 +40,7 @@ export const Home = () => {
       <div className="mt-5 home-wrapper">
         <ul className="sections-list">{sections}</ul>
       </div>
+      <div></div>
       <Footer />
     </>
   );
