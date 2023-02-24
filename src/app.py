@@ -19,10 +19,11 @@ ENV = os.getenv("FLASK_ENV")
 SPOTIFY_CLIENT_KEY=os.getenv("SPOTIFY_CLIENT_KEY")
 SPOTIFY_SECRET=os.getenv("SPOTIFY_SECRET")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
 jwt = JWTManager(app)
 
 # database condiguration

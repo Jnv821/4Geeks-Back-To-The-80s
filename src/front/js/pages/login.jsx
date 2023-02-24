@@ -11,15 +11,20 @@ export const Login = () => {
   const handleClick = () => {
     let requestOptions = {
       method: "POST",
+      headers: {
+        Content_Type: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
       body: JSON.stringify({
         username: username,
         password: password,
       }),
-      redirect: "follow",
     };
 
     fetch(
-      "https://3001-jrdelrio-4geeksbacktoth-6ahzti1ytn9.ws-us87.gitpod.io/api/token",
+      "https://3001-jnv821-4geeksbacktothe8-ux800qh0jlf.ws-us88.gitpod.io/api/token",
       requestOptions
     )
       .then((response) => {
@@ -27,7 +32,7 @@ export const Login = () => {
         else alert("There has been some error");
       })
       .then((result) => console.log(result))
-      .catch((error) => console.log("There was an error", error));
+      .catch((error) => console.error("There was an error", error));
   };
 
   return (
