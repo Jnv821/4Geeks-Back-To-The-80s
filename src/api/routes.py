@@ -75,4 +75,4 @@ def get_token():
         response = app.spotify_token
         return jsonify(response), 200
     except AttributeError:
-        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
+        return jsonify({"Error": "Check if the spotify connection is enabled server-side or Contact the developers."}), 500
