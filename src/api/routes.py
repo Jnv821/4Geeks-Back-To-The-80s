@@ -62,7 +62,7 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route('/token', methods=['GET'])
+@api.route('/token/spotify', methods=['GET'])
 def get_token():
     try:    
         response = app.spotify_token
