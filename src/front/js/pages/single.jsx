@@ -7,7 +7,7 @@ export const Single = (props) => {
 console.log(props)
   useEffect(() => {
     fetch(
-      "https://3001-jnv821-4geeksbacktothe8-bunat2pqo45.ws-eu88.gitpod.io/api/albums/1"
+      "https://3001-jnv821-4geeksbacktothe8-gslfrbu834j.ws-eu88.gitpod.io/api/albums/1"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -21,21 +21,14 @@ console.log(props)
     <>
       <Navbar />
       <div className="container-single">
-        <div className="row">
-          <div className="single-photo col-sm-4">
+          <div className="container-information">
+              <div className="information-album"><h1 >- ALBUM : <br/>{album.title} </h1></div>
+                <div className="information-author"><h1 >- ARTIST : <br/>{album.author}</h1></div>
+                  <div className="information-year"><h1 >- YEAR : <br/>{album.release_year}</h1></div>
+          </div>
+                  <div className="single-photo">
               <img src={album.album_cover} width="500" height="500" />
           </div>
-              <div className="information-single col-sm-8">
-            <p className="information-album">- Name : {album.title}</p>
-            <br />
-            <p className="information-album">- Release date : {album.release_year}</p>
-            <br />
-            <p className="information-album">- Copyrights :</p>
-            <br />
-            <p className="information-album">- Total tracks :</p>
-            <br />
-          </div>
-        </div>
       </div>
     </>
   );

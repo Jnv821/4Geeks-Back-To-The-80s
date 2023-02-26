@@ -1,9 +1,23 @@
-.container-single{
-    margin-top: 8%;
-    margin-left: 10%;
-    margin-bottom: 6%;
-}
-.information-album{
+
+.information-album, .information-author, .information-year{
     color: #56f6c6;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+}
+.single-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7%;
+}
+.container-information{
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+.information-album{
+    margin-left: 5%;
+}
+.information-year{
+    margin-right: 5%;
 }
