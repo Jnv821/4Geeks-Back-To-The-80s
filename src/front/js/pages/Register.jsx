@@ -31,6 +31,27 @@ export const Register = () => {
         setDescription(ev.target.value);
     };
 
+    const sendRegisterInformation = (ev) => {
+      ev.preventDefault()
+      if (password === confirmedPassword) {
+          fetch(process.env.BACKEND_URL + "/api/register", {
+              method: "POST",
+              body: JSON.stringify({
+                  "username": username,
+                  "email": email,
+                  "password": password,
+                  "description": description,
+              }),
+              headers: {
+                  "Content-type": "application/json"
+              }
+          })
+              .then((res) => res.json())
+              .then((data) => console.log(data))
+              .catch((err) => console.log(err));
+      }
+  };
+
     return (
     <div className="container-login">
       <form className="container-form">
