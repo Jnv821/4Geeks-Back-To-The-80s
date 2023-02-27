@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Album
 from api.utils import generate_sitemap, APIException
@@ -9,9 +10,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import JWTManager
 import app 
 
-
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -21,6 +20,8 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
 
 @api.route("/albums", methods=["GET"])
 def get_album ():
@@ -57,10 +58,21 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route('/token', methods=['GET'])
+@api.route("/token", methods=["POST"])
+def create_token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    
+    if username != "test" or password != "test":
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=username)
+    return jsonify(access_token=access_token)
+
+@api.route('/token/spotify', methods=['GET'])
 def get_token():
     try:    
         response_body = app.spotify_token
         return jsonify(response_body), 200
     except AttributeError:
-        return jsonify({"Error": "Check if the spotify connection is enabled server-side."}), 500
+        return jsonify({"Error": "Check if the spotify connection is enabled server-side or Contact the developers."}), 500
