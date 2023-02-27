@@ -21,8 +21,6 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-
-
 @api.route("/albums", methods=["GET"])
 def get_album ():
     albums = Album.query.all()
