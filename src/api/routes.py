@@ -5,11 +5,11 @@ import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Album
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import JWTManager
-from flask_jwt_extended import create_access_token
+import app 
 
-# Create flask api
 api = Blueprint('api', __name__)
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -20,8 +20,6 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
-
-
 
 @api.route("/albums", methods=["GET"])
 def get_album ():
@@ -72,7 +70,7 @@ def create_token():
 @api.route('/token/spotify', methods=['GET'])
 def get_token():
     try:    
-        response = app.spotify_token
-        return jsonify(response), 200
+        response_body = app.spotify_token
+        return jsonify(response_body), 200
     except AttributeError:
         return jsonify({"Error": "Check if the spotify connection is enabled server-side or Contact the developers."}), 500
