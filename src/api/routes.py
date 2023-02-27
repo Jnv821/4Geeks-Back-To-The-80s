@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os
+import os, bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Album
 from api.utils import generate_sitemap, APIException
@@ -74,3 +74,28 @@ def get_token():
         return jsonify(response_body), 200
     except AttributeError:
         return jsonify({"Error": "Check if the spotify connection is enabled server-side or Contact the developers."}), 500
+
+@api.route('/register', methods=['POST'])
+def register():
+    data = request.json
+    if not data["username"]:
+        return jsonify({"Error": "Username not provided"}) 
+    
+    if not data["password"]:
+        return jsonify({"Error": "Password not provided"})
+    
+    if not data["email"]:
+        return jsonify({"Error": "Email not provided"})
+    
+    if not data["description"]:
+        data["description"] = f"Hello! I'm {data['username']} and I love the 80's music."
+
+    profile_image_url = f"https://source.boringavatars.com/marble/120/{data['username']}"
+    
+    hashed_password = bcrypt.hashpw(data["password"].encode('utf-8'), bcrypt.gensalt())
+
+    user = Users(username = data["username"], password = hashed_password, email=data["email"], description = data["description"], profile_image = profile_image_url, is_active=True)
+    
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({"msg": f"Created the user {data['username']}, with password: {hashed_password}"})
