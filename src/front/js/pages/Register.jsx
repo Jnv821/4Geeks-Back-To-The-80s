@@ -5,7 +5,32 @@ import "../../styles/register.css";
 
 export const Register = () => {
     const { store, actions } = useContext(Context);
-  
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmedPassword, setConfirmePassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [description, setDescription] = useState("");
+
+    const handleUsername = (ev) => {
+        setUsername(ev.target.value);
+    };
+
+    const handlePassword = (ev) => {
+        setPassword(ev.target.value);
+    };
+
+    const handleConfirmedPassword = (ev) => {
+        setConfirmePassword(ev.target.value);
+    };
+
+    const handleEmail = (ev) => {
+        setEmail(ev.target.value);
+    };
+
+    const handleDescription = (ev) => {
+        setDescription(ev.target.value);
+    };
+
     return (
     <div className="container-login">
       <form className="container-form">
