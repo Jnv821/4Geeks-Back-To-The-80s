@@ -105,3 +105,10 @@ def register():
     db.session.commit()
     
     return jsonify({"msg": f"Created the user {data['username']}"}), 200
+
+
+@api.route('/profile/<int:id>', methods=['GET'])
+def get_user_profile(id):
+    user = Users.query.get(id)
+
+    return jsonify(user.serialize())
