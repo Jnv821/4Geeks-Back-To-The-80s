@@ -104,9 +104,3 @@ def register():
     db.session.add(user)
     db.session.commit()
     return jsonify({"msg": f"Created the user {data['username']}, with password: {hashed_password}"})
-
-@api.route('/check', methods=['POST'])
-def check_passwd():
-    data = request.json
-
-    return  bcrypt.checkpw(data["password"], data["hashed_password"])
