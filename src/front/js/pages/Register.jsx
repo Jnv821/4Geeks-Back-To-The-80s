@@ -82,16 +82,16 @@ export const Register = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="PasswordInput" className="form-label">Password</label>
-              <input type="password" className="form-control" id="PasswordInput" aria-describedby="emailHelp" onChange={handlePassword} required/>
+              <input type="password" className="form-control" id="PasswordInput" aria-describedby="emailHelp" onChange={handlePassword} maxLength={72} required/>
             </div>
             <div className="mb-3">
               <label htmlFor="PasswordConfirmInput" className="form-label">Confirm Password</label>
-              <input type="password" className="form-control" id="PasswordConfirmInput" onChange={handleConfirmedPassword} required/>
+              <input type="password" className="form-control" id="PasswordConfirmInput" onChange={handleConfirmedPassword} maxLength={72} required/>
               {password !== confirmedPassword ? <div className="invalid-feedback d-block">Passwords do not match</div> : <div></div>}
             </div>
             <div className="form-group">
               <label htmlFor="DescriptionInput">Descriptions</label>
-              <textarea className="form-control" id="DescriptionInput" rows="3" placeholder="Cuéntanos tu tipo de música favorita de los 80's, artistas, álbums ..." onChange={handleDescription}></textarea>
+              <textarea className="form-control" id="DescriptionInput" rows="3" placeholder="Cuéntanos tu tipo de música favorita de los 80's, artistas, álbums ..." onChange={handleDescription} maxLength={2048}></textarea>
             </div>
             <button type="submit" className="btn-create">Create Account</button>
       </form>
