@@ -68,7 +68,7 @@ def create_token():
 
     if bcrypt.checkpw(password.encode('utf-8'), user.password):
         access_token = create_access_token(identity=username)
-        return jsonify(access_token=access_token)
+        return jsonify(access_token=access_token), 200
     
     return jsonify({"msg": "Bad username or password"}), 401
 
@@ -84,13 +84,13 @@ def get_token():
 def register():
     data = request.json
     if not data["username"]:
-        return jsonify({"Error": "Username not provided"}) 
+        return jsonify({"Error": "Username not provided"}) , 401
     
     if not data["password"]:
-        return jsonify({"Error": "Password not provided"})
+        return jsonify({"Error": "Password not provided"}), 401
     
     if not data["email"]:
-        return jsonify({"Error": "Email not provided"})
+        return jsonify({"Error": "Email not provided"}), 401
     
     if not data["description"]:
         data["description"] = f"Hello! I'm {data['username']} and I love the 80's music."
@@ -103,4 +103,5 @@ def register():
     
     db.session.add(user)
     db.session.commit()
-    return jsonify({"msg": f"Created the user {data['username']}, with password: {hashed_password}"})
+    
+    return jsonify({"msg": f"Created the user {data['username']}"}), 200
