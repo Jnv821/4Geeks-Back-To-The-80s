@@ -26,15 +26,15 @@ const CardAlbum = (props) => {
             className={`btn btn-outline-primary likeButton ${
               favorite ? "selected" : null
             }`}
-            // onClick={(ev) => {
-            //   if (favorite === false) {
-            //     actions.addFavorite(char.name);
-            //     setFavorite(true);
-            //   } else if (favorite === true) {
-            //     actions.deleteFavorite(char.name);
-            //     setFavorite(false);
-            //   }
-            // }}
+            onClick={(ev) => {
+              if (favorite === false) {
+                actions.addFavorite(album.name);
+                setFavorite(true);
+              } else if (favorite === true) {
+                actions.deleteFavorite(album.name);
+                setFavorite(false);
+              }
+            }}
           >
             ♡
           </button>
