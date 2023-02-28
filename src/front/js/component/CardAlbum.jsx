@@ -2,25 +2,23 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext"; // trsaigo todos los datos y funciones definidas en appContext.js
 
-const CardCharacter = (props) => {
-  const [url, setUrl] = useState(props.url);
-  const [char, setChar] = useState({});
-  const [uid, setUid] = useState();
+const CardAlbum = (props) => {
+  const [album, setAlbum] = useState(props.album);
   const [favorite, setFavorite] = useState(false);
   const { store, actions } = useContext(Context);
 
   // fetch to album
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setChar(data.result.properties);
-        setUid(data.result.uid);
-      })
-      .catch((err) => console.error(err));
-  }, [url]);
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setChar(data.result.properties);
+  //       setUid(data.result.uid);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
-  if (char !== {}) {
+  if (album !== {}) {
     return (
       <div className="card">
         <div className="album-cover">
@@ -28,45 +26,41 @@ const CardCharacter = (props) => {
             className={`btn btn-outline-primary likeButton ${
               favorite ? "selected" : null
             }`}
-            onClick={(ev) => {
-              if (favorite === false) {
-                actions.addFavorite(char.name);
-                setFavorite(true);
-              } else if (favorite === true) {
-                actions.deleteFavorite(char.name);
-                setFavorite(false);
-              }
-            }}
+            // onClick={(ev) => {
+            //   if (favorite === false) {
+            //     actions.addFavorite(char.name);
+            //     setFavorite(true);
+            //   } else if (favorite === true) {
+            //     actions.deleteFavorite(char.name);
+            //     setFavorite(false);
+            //   }
+            // }}
           >
             ♡
           </button>
           <Link
-            to={`/single/${uid}`}
+            to={`/single/${album.id}`}
             className="btn btn-outline-primary learnMoreButton"
           >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
-              className="card-img-top"
-              alt="alt"
-            />
+            <img src={album.cover} className="card-img-top" alt="alt" />
           </Link>
         </div>
         <div className="card-body">
           <p className="card-text">
             <div>
               <p>
-                <b>Thriller</b>
+                <b>{album.album}</b>
               </p>
             </div>
           </p>
           <p className="card-text">
             <div>
-              <p>Michael Jackson</p>
+              <p>{album.artist}</p>
             </div>
           </p>
           <p className="card-text">
             <div>
-              <p>1982</p>
+              <p>{album.year}</p>
             </div>
           </p>
         </div>
@@ -77,4 +71,4 @@ const CardCharacter = (props) => {
   }
 };
 
-export default CardCharacter;
+export default CardAlbum;
