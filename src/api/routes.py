@@ -60,12 +60,17 @@ def get_album_by_id(id):
 def create_token():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    
-    if username != "test" or password != "test":
+
+    user = Users.query.filter_by(username=username).first()
+
+    if not user: 
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
+    if bcrypt.checkpw(password.encode('utf-8'), user.password):
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token)
+    
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @api.route('/token/spotify', methods=['GET'])
 def get_token():
@@ -99,3 +104,9 @@ def register():
     db.session.add(user)
     db.session.commit()
     return jsonify({"msg": f"Created the user {data['username']}, with password: {hashed_password}"})
+
+@api.route('/check', methods=['POST'])
+def check_passwd():
+    data = request.json
+
+    return  bcrypt.checkpw(data["password"], data["hashed_password"])
