@@ -26,7 +26,9 @@ class Users(db.Model):
             "id": self.id,
             "email": self.email,
             "username": self.username,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "description": self.description,
+            "profile_image": self.profile_image
             # do not serialize the password, its a security breach
         }
 
