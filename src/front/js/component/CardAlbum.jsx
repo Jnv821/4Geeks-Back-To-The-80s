@@ -7,17 +7,6 @@ const CardAlbum = (props) => {
   const [favorite, setFavorite] = useState(false);
   const { store, actions } = useContext(Context);
 
-  // fetch to album
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setChar(data.result.properties);
-  //       setUid(data.result.uid);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
-
   if (album !== {}) {
     return (
       <div className="card">
