@@ -87,6 +87,7 @@ export const Register = () => {
             <div className="mb-3">
               <label htmlFor="PasswordConfirmInput" className="form-label">Confirm Password</label>
               <input type="password" className="form-control" id="PasswordConfirmInput" onChange={handleConfirmedPassword} required/>
+              {password !== confirmedPassword ? <div className="invalid-feedback d-block">Passwords do not match</div> : <div></div>}
             </div>
             <div className="form-group">
               <label htmlFor="DescriptionInput">Descriptions</label>
