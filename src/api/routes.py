@@ -12,6 +12,18 @@ import app
 
 api = Blueprint('api', __name__)
 
+@api.route("/token", methods=["POST"])
+def create_token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    
+    if username != "test" or password != "test":
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity = username)
+    return jsonify(access_token = access_token)
+
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -56,16 +68,6 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route("/token", methods=["POST"])
-def create_token():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    
-    if username != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
 
 @api.route('/token/spotify', methods=['GET'])
 def get_token():
