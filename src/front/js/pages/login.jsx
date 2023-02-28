@@ -20,6 +20,9 @@ export const Login = () => {
   if (store.token && store.token !== "" && store.token != undefined)
     navigate("/");
 
+  // para borrar el token en la consola del navegador
+  // sessionStorage.removeItem("token")
+
   return (
     <div className="container-login">
       <div className="row">
@@ -33,7 +36,7 @@ export const Login = () => {
             <>
               <div className="form-floating mb-3">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   id="floatingInput"
                   placeholder="name@example.com"

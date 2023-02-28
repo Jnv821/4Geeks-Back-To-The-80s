@@ -20,7 +20,7 @@ def create_token():
     if username != "test" or password != "test":
         return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity = username)
     return jsonify(access_token = access_token)
 
 

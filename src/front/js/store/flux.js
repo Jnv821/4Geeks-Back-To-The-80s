@@ -22,12 +22,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
-
         console.log(
           "Aplication just loaded, synching the local session storage token"
         );
         if (token && token !== "" && token !== undefined)
           setStore({ token: token });
+      },
+
+      logout: () => {
+        sessionStorage.removeItem("token");
+        console.log("Login out");
+        setStore({ token: null });
       },
 
       login: async (username, password) => {
