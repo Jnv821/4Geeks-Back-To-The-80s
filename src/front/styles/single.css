@@ -5,19 +5,33 @@
    
 }
 .single-photo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 7%;
+    float: left;
+    width: 50%;
+    margin-top: 5%;
+  padding-left: 10%;
+  font-size: 1.2rem;
 }
 .container-information{
-    margin-bottom: 3%;
-    display: flex;
-    justify-content: space-between;
+    float: right;
+    width: 50%;
+    margin-bottom: 50%;
+    margin-top: 5%;
+    font-size: 1.2rem;
 }
-.information-album{
-    margin-left: 5%;
+.container-single{
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
-.information-year{
-    margin-right: 5%;
-}
+
+@media screen and (max-width: 768px) {
+    .container-single {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container-single {
+      grid-template-columns: 1fr;
+    }
+  }
