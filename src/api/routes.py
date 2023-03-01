@@ -8,7 +8,8 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import JWTManager
-import app 
+from flask_jwt_extended import create_access_token
+import app
 
 api = Blueprint('api', __name__)
 
