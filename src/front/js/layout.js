@@ -26,7 +26,7 @@ const Layout = () => {
           <Route element={<Register />} path="/register" />
           <Route element={<Home />} path="/" />
           <Route element={<Single />} path="/albums/:id" />
-          <Route element={<Profile />} path="/user/:id" />
+          <Route element={<Profile />} path="/profile/:id" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
         <Footer />
