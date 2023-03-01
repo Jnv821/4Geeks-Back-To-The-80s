@@ -1,9 +1,37 @@
-.container-single{
-    margin-top: 8%;
-    margin-left: 10%;
-    margin-bottom: 6%;
-}
-.information-album{
+
+.information-album, .information-author, .information-year{
     color: #56f6c6;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
 }
+.single-photo{
+    float: left;
+    width: 50%;
+    margin-top: 5%;
+  padding-left: 10%;
+  font-size: 1.2rem;
+}
+.container-information{
+    float: right;
+    width: 50%;
+    margin-bottom: 50%;
+    margin-top: 5%;
+    font-size: 1.2rem;
+}
+.container-single{
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 768px) {
+    .container-single {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container-single {
+      grid-template-columns: 1fr;
+    }
+  }
