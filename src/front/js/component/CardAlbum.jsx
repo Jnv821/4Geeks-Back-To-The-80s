@@ -31,25 +31,25 @@ const CardAlbum = (props) => {
             to={`/single/${album.id}`}
             className="btn btn-outline-primary learnMoreButton"
           >
-            <img src={album.cover} className="card-img-top" alt="alt" />
+            <img src={album.album_cover} className="card-img-top" alt="alt" />
           </Link>
         </div>
         <div className="card-body">
           <p className="card-text">
             <div>
               <p>
-                <b>{album.album}</b>
+                <b>{album.title}</b>
               </p>
             </div>
           </p>
           <p className="card-text">
             <div>
-              <p>{album.artist}</p>
+              <p>{album.author}</p>
             </div>
           </p>
           <p className="card-text">
             <div>
-              <p>{album.year}</p>
+              <p>{album.release_year}</p>
             </div>
           </p>
         </div>
