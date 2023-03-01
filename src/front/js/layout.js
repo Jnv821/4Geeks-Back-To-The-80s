@@ -23,9 +23,9 @@ const Layout = () => {
         <Routes>
           <Route element={<Register />} path="/register" />
           <Route element={<Login />} path="/login" />
-          <Route element={<Backto80s />} path="/backto80s" />
+          <Route element={<Backto80s />} path="/" />
           <Route element={<Register />} path="/register" />
-          <Route element={<Home />} path="/" />
+          <Route element={<Home />} path="/home" />
           <Route element={<Single />} path="/albums/:id" />
           <Route element={<Profile />} path="/profile/:id" />
           <Route element={<AboutUs />} path="/aboutus" />
