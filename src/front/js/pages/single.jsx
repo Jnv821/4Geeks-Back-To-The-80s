@@ -2,13 +2,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/single.css";
 import Navbar from "../component/navbar.js";
-import {useLocation} from 'react-router-dom'
+import {useLocation, useParams} from 'react-router-dom';
 
 
 export const Single = (props) => {
-  let [album, setAlbum] = useState([]);
+  let [url, setUrl] = useState("");
+  let [album, setAlbum] = useState({});
+  const params = useParams();
+  console.log(params)
 
-const url = useLocation().pathname
+  for (let album in json){
+    if (album.id == params){
+    setAlbum(album)
+    }
+  }
+
+url = useLocation().pathname
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api" + url)
       .then((response) => response.json())
@@ -18,7 +27,7 @@ const url = useLocation().pathname
       });
   }, []);
 
-  /* fetch(album.album.spotify_url, {
+ /* fetch(album.spotify_url, {
      method: 'GET',
      headers: {
      'Authorization': "Bearer " + token
