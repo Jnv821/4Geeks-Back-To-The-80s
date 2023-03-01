@@ -12,14 +12,21 @@ import app
 
 api = Blueprint('api', __name__)
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route("/token", methods=["POST"])
+def create_token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    user = Users.query.filter_by(username=username).first()
 
-    return jsonify(response_body), 200
+    if not user: 
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    if bcrypt.checkpw(password.encode('utf-8'), user.password):
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token), 200
+    
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @api.route("/albums", methods=["GET"])
 def get_album ():
@@ -56,21 +63,7 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route("/token", methods=["POST"])
-def create_token():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
 
-    user = Users.query.filter_by(username=username).first()
-
-    if not user: 
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    if bcrypt.checkpw(password.encode('utf-8'), user.password):
-        access_token = create_access_token(identity=username)
-        return jsonify(access_token=access_token), 200
-    
-    return jsonify({"msg": "Bad username or password"}), 401
 
 @api.route('/token/spotify', methods=['GET'])
 def get_token():
@@ -110,5 +103,4 @@ def register():
 @api.route('/profile/<int:id>', methods=['GET'])
 def get_user_profile(id):
     user = Users.query.get(id)
-
     return jsonify(user.serialize())
