@@ -10,11 +10,12 @@ const Navbar = () => {
   if (store.favorites != undefined) {
     return (
       <nav className="navbar navbar-light bg-light mb-3">
-        <Link to="/">
+        <Link to="/home">
           <img className="main-logo" src={logo} />
         </Link>
         <div className="ml-auto">
           <div className="dropdown">
+            <Link to="/aboutus">About us</Link>
             <button
               className="btn btn-primary dropdown-toggle"
               type="button"
