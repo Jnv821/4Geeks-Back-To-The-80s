@@ -52,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const resp = await fetch(
-            "https://3001-jnv821-4geeksbacktothe8-ux800qh0jlf.ws-us88.gitpod.io/api/token",
+            process.env.BACKEND_URL + "/api/token",
             requestOptions
           );
           if (resp.status !== 200) {
