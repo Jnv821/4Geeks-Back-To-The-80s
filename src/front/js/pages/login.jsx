@@ -18,7 +18,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   if (store.token && store.token !== "" && store.token != undefined)
-    navigate("/");
+    navigate("/home");
 
   // para borrar el token en la consola del navegador
   // sessionStorage.removeItem("token")
