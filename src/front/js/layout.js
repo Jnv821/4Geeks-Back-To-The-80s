@@ -8,6 +8,7 @@ import { Login } from "./pages/login.jsx";
 import { Profile } from "./pages/profile.jsx";
 import injectContext from "./store/appContext";
 import { Register } from "./pages/Register.jsx";
+import { AboutUs } from "./pages/aboutUs.jsx";
 
 import { Footer } from "./component/footer";
 import { Backto80s } from "./pages/Backto80s.jsx";
@@ -22,11 +23,12 @@ const Layout = () => {
         <Routes>
           <Route element={<Register />} path="/register" />
           <Route element={<Login />} path="/login" />
-          <Route element={<Backto80s />} path="/backto80s" />
+          <Route element={<Login />} path="/" />
           <Route element={<Register />} path="/register" />
-          <Route element={<Home />} path="/" />
-          <Route element={<Single />} path="/single/:id" />
-          <Route element={<Profile />} path="/user/:id" />
+          <Route element={<Home />} path="/home" />
+          <Route element={<Single />} path="/albums/:id" />
+          <Route element={<Profile />} path="/profile/:id" />
+          <Route element={<AboutUs />} path="/aboutus" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
         <Footer />

@@ -1,27 +1,33 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os
+import os, bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Album
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
+import app
 
-# Create flask api
 api = Blueprint('api', __name__)
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+@api.route("/token", methods=["POST"])
+def create_token():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    user = Users.query.filter_by(username=username).first()
 
-    return jsonify(response_body), 200
+    if not user: 
+        return jsonify({"msg": "Bad username or password"}), 401
 
-
+    if bcrypt.checkpw(password.encode('utf-8'), user.password):
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token), 200
+    
+    return jsonify({"msg": "Bad username or password"}), 401
 
 @api.route("/albums", methods=["GET"])
 def get_album ():
@@ -58,21 +64,44 @@ def get_album_by_id(id):
         return({"Error" : "The album requested for was either deleted or has not been created yet."}), 404
     return jsonify(response), 200
 
-@api.route("/token", methods=["POST"])
-def create_token():
-    username = request.json.get("username", None)
-    password = request.json.get("password", None)
-    
-    if username != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
 
 @api.route('/token/spotify', methods=['GET'])
 def get_token():
     try:    
-        response = app.spotify_token
-        return jsonify(response), 200
+        response_body = app.spotify_token
+        return jsonify(response_body), 200
     except AttributeError:
         return jsonify({"Error": "Check if the spotify connection is enabled server-side or Contact the developers."}), 500
+
+@api.route('/register', methods=['POST'])
+def register():
+    data = request.json
+    if not data["username"]:
+        return jsonify({"Error": "Username not provided"}) , 401
+    
+    if not data["password"]:
+        return jsonify({"Error": "Password not provided"}), 401
+    
+    if not data["email"]:
+        return jsonify({"Error": "Email not provided"}), 401
+    
+    if not data["description"]:
+        data["description"] = f"Hello! I'm {data['username']} and I love the 80's music."
+
+    profile_image_url = f"https://source.boringavatars.com/marble/120/{data['username']}"
+    
+    hashed_password = bcrypt.hashpw(data["password"].encode('utf-8'), bcrypt.gensalt())
+
+    user = Users(username = data["username"], password = hashed_password, email=data["email"], description = data["description"], profile_image = profile_image_url, is_active=True)
+    
+    db.session.add(user)
+    db.session.commit()
+    
+    return jsonify({"msg": f"Created the user {data['username']}"}), 200
+
+
+@api.route('/profile/<int:id>', methods=['GET'])
+def get_user_profile(id):
+    user = Users.query.get(id)
+    return jsonify(user.serialize())

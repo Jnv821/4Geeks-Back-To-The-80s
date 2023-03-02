@@ -19,11 +19,14 @@ ENV = os.getenv("FLASK_ENV")
 SPOTIFY_CLIENT_KEY=os.getenv("SPOTIFY_CLIENT_KEY")
 SPOTIFY_SECRET=os.getenv("SPOTIFY_SECRET")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
+
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')
 jwt = JWTManager(app)
+
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -104,7 +107,7 @@ def run_every_n_seconds(delay, task):
 # This line is for debugging and development purposes only. 
 # Once the code is ready for production we will delete this conditional.
 # Only change spotify_Connection to true or false.
-spotify_connection = True
+spotify_connection = False
 
 if spotify_connection == True:
     # Generate token on startup

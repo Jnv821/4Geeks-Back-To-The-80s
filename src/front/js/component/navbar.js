@@ -1,19 +1,21 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext"; // trsaigo todos los datos y funciones definidas en appContext.js
 import logo from "../../img/Back_to_80_logo.png";
 
 const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
   if (store.favorites != undefined) {
     return (
       <nav className="navbar navbar-light bg-light mb-3">
-        <Link to="/">
+        <Link to="/home">
           <img className="main-logo" src={logo} />
         </Link>
         <div className="ml-auto">
           <div className="dropdown">
+            <Link to="/aboutus">About us</Link>
             <button
               className="btn btn-primary dropdown-toggle"
               type="button"
@@ -35,6 +37,15 @@ const Navbar = () => {
                 );
               })}
             </ul>
+            <button
+              className="btn btn-primary logout-btn"
+              onClick={() => {
+                actions.logout();
+                navigate("/login");
+              }}
+            >
+              Log out
+            </button>
           </div>
         </div>
       </nav>
