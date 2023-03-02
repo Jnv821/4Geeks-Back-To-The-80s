@@ -5,5 +5,10 @@ export const Landing = () => {
   const navigate = useNavigate();
   navigate("/login");
 
-  return <></>;
+  return (
+  <> 
+ 
+  
+  </>
+  );
 };
