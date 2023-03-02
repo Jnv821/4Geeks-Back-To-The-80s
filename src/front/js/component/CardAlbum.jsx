@@ -28,7 +28,7 @@ const CardAlbum = (props) => {
             ♡
           </button>
           <Link
-            to={`/single/${album.id}`}
+            to={`/albums/${album.id}`}
             className="btn btn-outline-primary learnMoreButton"
           >
             <img src={album.album_cover} className="card-img-top" alt="alt" />
