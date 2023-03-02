@@ -27,11 +27,16 @@ export const Login = () => {
   return (
     <div className="landing-page">
       <div className="back-to-the-80">
-        <h1 className="name-back">BACK <br/>TO THE 80'S</h1>
-        <p className="description-landing">Sumérgete en la mejor música <br/>de los años 80's</p>
+        <h1 className="name-back">
+          BACK <br />
+          TO THE 80'S
+        </h1>
+        <p className="description-landing">
+          Sumérgete en la mejor música <br />
+          de los años 80's
+        </p>
       </div>
-    <div className="container-login">
-      
+      <div className="container-login">
         <div className="form-login col-lg-12">
           <div className="account">
             <h4>My Account</h4>
@@ -48,6 +53,12 @@ export const Login = () => {
                   placeholder="name@example.com"
                   value={username}
                   onChange={(ev) => setUsername(ev.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      console.log("Enter key pressed!");
+                      handleClick();
+                    }
+                  }}
                 />
                 <label htmlFor="floatingInput">Username</label>
               </div>
@@ -60,6 +71,12 @@ export const Login = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(ev) => setPassword(ev.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      console.log("Enter key pressed!");
+                      handleClick();
+                    }
+                  }}
                 />
                 <label htmlFor="floatingPassword">Password</label>
               </div>
@@ -74,13 +91,14 @@ export const Login = () => {
               </div>
               <div className="register">
                 Si todavía no tienes cuenta, regístrate{" "}
-                  <Link className="link-register" to="/register">aquí </Link>
+                <Link className="link-register" to="/register">
+                  aquí{" "}
+                </Link>
               </div>
             </>
           )}
         </div>
       </div>
     </div>
- 
   );
 };
