@@ -1,0 +1,36 @@
+.photo-history,.photo-project, .photo-mission{
+    width: 400px;
+    border-radius: 5%;  
+}
+
+.container-about_us, .container-our_mission{
+    width: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin: 3%;
+}
+.texto-history, .container-photo, .texto-mission, .photo-mission {
+    display: inline-block;
+    width: 45%; /* ajusta el ancho de los divs según tus necesidades */
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; 
+  }
+.texto-history, .texto-mission, .texto-project{
+    color: aliceblue;
+}  
+.history, .mission, .project{
+    background: linear-gradient(#56f6c6,#a6029b);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+.container-project{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.vista-about_us {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
