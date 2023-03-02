@@ -8,7 +8,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import JWTManager
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required
 import app
 
 api = Blueprint('api', __name__)
@@ -105,3 +105,33 @@ def register():
 def get_user_profile(id):
     user = Users.query.get(id)
     return jsonify(user.serialize())
+
+@api.route('/favorites', methods=['POST'])
+@jwt_required()
+def handle_favorites():
+    username = get_jwt_identity()
+    data = request.json
+
+    # Get the user & album.
+    user = Users.query.filter_by(username=username).first()
+    album = Album.query.get(data["id"])
+    
+    # This gets the favorites of the current user and serializes it.
+    user_favorite_albums = user.favorited_albums
+    user_favorite_albums_list = [user_favorite_album.serialize() for user_favorite_album in user_favorite_albums]
+
+    if not any(alb['id'] == int(data['id']) for alb in user_favorite_albums_list):
+        # This condition returns TRUE if the album with the ID provided is NOT in user_favorite_albums_list.
+        # Thus it should be added to the favorites. Otherwise it should be removed.
+        user.favorited_albums.append(album)
+        db.session.add(user)
+        db.session.commit()
+        
+        return jsonify({"msg" : "The album was not in favorites. Added the album to favorites."})
+    else: 
+    # Delete the favorites
+        user.favorited_albums.remove(album)
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify({"msg": "The album was in favorites. Deleted the album from favorites."})
