@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../component/navbar.js";
 import Section from "../component/Section.jsx";
-import { Footer } from "../component/footer.js";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   let [token, setToken] = useState("");
   const [masterList, setMasterList] = useState();
+
+  const { store, actions } = useContext(Context);
+
+  const navigate = useNavigate();
+
+  if (store.token == false || store.token == "" || store.token == undefined)
+    navigate("/login");
 
   // fetch de la data de albums
   useEffect(() => {
