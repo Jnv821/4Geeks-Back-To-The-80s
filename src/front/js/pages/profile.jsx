@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
+import CardAlbum from "../component/CardAlbum.jsx";
 import Navbar from "../component/navbar.js";
 import "../../styles/profile.css";
 // card album will be a placeholder component for now.
@@ -8,16 +9,27 @@ import "../../styles/profile.css";
 export const Profile = () => {
     const { store, actions } = useContext(Context);
     const [userData, setUserData] = useState({});
+    const [favoriteData, setFavoriteData0] =useState([])
 
     const url = useLocation().pathname;
     console.log(url)
     // Fetch the user data
     useEffect(() => {
-      fetch(process.env.BACKEND_URL + '/api' + url)
-      .then(res => res.json())
-      .then(data => setUserData(data))
-      .catch(err => console.log(err))
+        fetch(process.env.BACKEND_URL + '/api' + url)
+        .then(res => res.json())
+        .then(data => { setUserData(data.user)
+                        setFavoriteData0(data.favorites)   
+        })
+        .catch(err => console.log(err))
     }, []);
+
+    useEffect(() => {
+        console.log(userData)
+    }, [userData])
+    
+    const favoriteList = favoriteData.map((favorite) => {
+        return(<CardAlbum album={favorite}/>)
+    })
 
     return (
         <>
@@ -42,6 +54,7 @@ export const Profile = () => {
                 </div>
                 <div className="row">
                     <h1 className="text-white">Favorite Albums</h1>
+                    {favoriteData ? favoriteList : ""}
                 </div>
             </div>
         </>
