@@ -6,6 +6,15 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
 
     actions: {
+      handleFavorite: (id) => {
+        fetch(process.BACKEND_URL + '/api/favorites', {
+          method: 'POST',
+          body: {"id": id }
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log())
+      },
       addFavorite: (newFavorite) => {
         const store = getStore();
         setStore({ favorites: [...store.favorites, newFavorite] });
