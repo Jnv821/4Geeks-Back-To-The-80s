@@ -104,7 +104,11 @@ def register():
 @api.route('/profile/<int:id>', methods=['GET'])
 def get_user_profile(id):
     user = Users.query.get(id)
-    return jsonify(user.serialize())
+    user_favorite_albums = user.favorited_albums
+    user_favorite_albums_list = [user_favorite_album.serialize() for user_favorite_album in user_favorite_albums]
+
+    return jsonify({"user": user.serialize(),
+                    "favorites":user_favorite_albums_list })
 
 @api.route('/favorites', methods=['POST'])
 @jwt_required()
