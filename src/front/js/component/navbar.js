@@ -16,14 +16,6 @@ const Navbar = () => {
         <div className="ml-auto">
           <div className="dropdown">
             <Link to="/aboutus">About us</Link>
-            <button
-              className="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="true"
-            >
-              Favorites {store.favorites.length}
-            </button>
             <ul className="dropdown-menu">
               {store.favorites.map((name, index) => {
                 return (

@@ -1,17 +1,16 @@
 .photo-history,.photo-project, .photo-mission{
     width: 400px;
-    border-radius: 5%;  
+    height: 267px;
+    border-radius: 8%;  
 }
 
 .container-about_us, .container-our_mission{
     width: 100%;
-    margin-left: 15%;
-    margin-right: 15%;
     margin: 3%;
 }
 .texto-history, .container-photo, .texto-mission, .photo-mission {
     display: inline-block;
-    width: 45%; /* ajusta el ancho de los divs según tus necesidades */
+    width: 50%; /* ajusta el ancho de los divs según tus necesidades */
     padding: 10px;
     box-sizing: border-box;
     text-align: center; 
