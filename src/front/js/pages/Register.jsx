@@ -68,7 +68,7 @@ export const Register = () => {
   }, [username, email, password, description]);
 
   return (
-    <div className="container-login">
+    <div className="container-register">
       <form
         className="container-form needs-validation"
         onSubmit={sendRegisterInformation}
