@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "../../img/Back_to_80_logo.png";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -24,8 +25,13 @@ export const Login = () => {
   // sessionStorage.removeItem("token")
 
   return (
+    <div className="landing-page">
+      <div className="back-to-the-80">
+        <h1 className="name-back">BACK <br/>TO THE 80'S</h1>
+        <p className="description-landing">Sumérgete en la mejor música <br/>de los años 80's</p>
+      </div>
     <div className="container-login">
-      <div className="row">
+      
         <div className="form-login col-lg-12">
           <div className="account">
             <h4>My Account</h4>
@@ -68,12 +74,13 @@ export const Login = () => {
               </div>
               <div className="register">
                 Si todavía no tienes cuenta, regístrate{" "}
-                <Link to="/register">aquí </Link>
+                  <Link className="link-register" to="/register">aquí </Link>
               </div>
             </>
           )}
         </div>
       </div>
     </div>
+ 
   );
 };
