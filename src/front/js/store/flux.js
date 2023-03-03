@@ -6,11 +6,15 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
 
     actions: {
-      handleFavorite: (id) => {
+      handleFavorite: (id, token) => {
         fetch(process.BACKEND_URL + '/api/favorites', {
           method: 'POST',
+          headers: {
+            "Authorization": "Bearer " + token
+          },
           body: {"id": id }
         })
+        
         .then(res => res.json())
         .then(data => console.log(data))
         .catch(err => console.log())
