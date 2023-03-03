@@ -76,6 +76,7 @@ def get_token():
 
 @api.route('/register', methods=['POST'])
 def register():
+    print('prueba')
     data = request.json
     if not data["username"]:
         return jsonify({"Error": "Username not provided"}) , 401
