@@ -7,7 +7,21 @@ const CardAlbum = (props) => {
   const [favorite, setFavorite] = useState(false);
   const { store, actions } = useContext(Context);
 
-  if (album !== {}) {
+  useEffect(() => {
+  if(props.favorites){
+    const favorited = props.favorites.find((fav) => {
+      return fav.id === album.id
+    })
+    console.log("This is:" , favorite)
+    if(favorited){
+      setFavorite(true)
+    } else {
+      setFavorite(false)
+    }
+  }
+  }, [props])
+
+  if (album) {
     return (
       <div className="card">
         <div className="album-cover">
@@ -16,6 +30,10 @@ const CardAlbum = (props) => {
               favorite ? "selected" : null
             }`}
             onClick={(ev) => {
+              console.log("click")
+              console.log(store.token)
+              actions.handleFavorite(album.id, store.token)
+              
               if (favorite === false) {
                 actions.addFavorite(album.name);
                 setFavorite(true);

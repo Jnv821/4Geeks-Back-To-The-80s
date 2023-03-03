@@ -7,17 +7,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
     actions: {
       handleFavorite: (id, token) => {
-        fetch(process.BACKEND_URL + '/api/favorites', {
+        console.log(token)
+        fetch(process.env.BACKEND_URL + '/api/favorites', {
           method: 'POST',
           headers: {
-            "Authorization": "Bearer " + token
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
           },
-          body: {"id": id }
+          body: JSON.stringify({"id": id })
         })
         
         .then(res => res.json())
         .then(data => console.log(data))
-        .catch(err => console.log())
+        .catch(err => console.log(err))
       },
       addFavorite: (newFavorite) => {
         const store = getStore();

@@ -42,7 +42,7 @@ export const Login = () => {
             <h4>My Account</h4>
           </div>
           {store.token && store.token !== "" && store.token !== undefined ? (
-            "You are logged in with this token " + store.token
+            "."
           ) : (
             <>
               <div className="form-floating mb-3">

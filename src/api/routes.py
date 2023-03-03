@@ -30,11 +30,20 @@ def create_token():
     return jsonify({"msg": "Bad username or password"}), 401
 
 @api.route("/albums", methods=["GET"])
+@jwt_required()
 def get_album ():
     albums = Album.query.all()
+    username = get_jwt_identity()
+    user = Users.query.filter_by(username=username).first()
+
+    user_favorite_albums = user.favorited_albums
+    user_favorite_albums_list = [user_favorite_album.serialize() for user_favorite_album in user_favorite_albums]
+
     albums_list = [album.serialize() for album in albums]
+    
     response= {
-        "albums" : albums_list
+        "albums" : albums_list,
+        "favorites": user_favorite_albums_list
     }
     return jsonify(response), 200
 
@@ -115,8 +124,7 @@ def get_user_profile(id):
 def handle_favorites():
     username = get_jwt_identity()
     data = request.json
-
-    # Get the user & album.
+    ## Get the user & album.
     user = Users.query.filter_by(username=username).first()
     album = Album.query.get(data["id"])
     
@@ -125,17 +133,17 @@ def handle_favorites():
     user_favorite_albums_list = [user_favorite_album.serialize() for user_favorite_album in user_favorite_albums]
 
     if not any(alb['id'] == int(data['id']) for alb in user_favorite_albums_list):
-        # This condition returns TRUE if the album with the ID provided is NOT in user_favorite_albums_list.
-        # Thus it should be added to the favorites. Otherwise it should be removed.
+    #     # This condition returns TRUE if the album with the ID provided is NOT in user_favorite_albums_list.
+    #     # Thus it should be added to the favorites. Otherwise it should be removed.
         user.favorited_albums.append(album)
         db.session.add(user)
         db.session.commit()
-        
-        return jsonify({"msg" : "The album was not in favorites. Added the album to favorites."})
+    #     
+    #     return jsonify({"msg" : "The album was not in favorites. Added the album to favorites."})
     else: 
-    # Delete the favorites
+    #   Delete the favorites
         user.favorited_albums.remove(album)
         db.session.add(user)
         db.session.commit()
 
-        return jsonify({"msg": "The album was in favorites. Deleted the album from favorites."})
+    return jsonify({"msg": "The album was in favorites. Deleted the album from favorites.", "data": data["id"]})
