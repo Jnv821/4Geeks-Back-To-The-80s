@@ -17,8 +17,7 @@ export const Home = () => {
 
   // fetch de la data de albums
   useEffect(() => {
-    const url =
-      "https://3001-jnv821-4geeksbacktothe8-ux800qh0jlf.ws-us89.gitpod.io/api/albums";
+    const url = process.env.BACKEND_URL + "/api/albums";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMasterList(data.albums))
