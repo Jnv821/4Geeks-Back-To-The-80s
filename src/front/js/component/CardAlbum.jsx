@@ -54,21 +54,13 @@ const CardAlbum = (props) => {
         </div>
         <div className="card-body">
           <p className="card-text">
-            <div>
-              <p>
                 <b>{album.title}</b>
-              </p>
-            </div>
           </p>
           <p className="card-text">
-            <div>
-              <p>{album.author}</p>
-            </div>
+              {album.author}
           </p>
           <p className="card-text">
-            <div>
-              <p>{album.release_year}</p>
-            </div>
+              {album.release_year}
           </p>
         </div>
       </div>
