@@ -138,12 +138,12 @@ def handle_favorites():
         user.favorited_albums.append(album)
         db.session.add(user)
         db.session.commit()
-    #     
-    #     return jsonify({"msg" : "The album was not in favorites. Added the album to favorites."})
+        return jsonify({"msg" : "The album was not in favorites. Added the album to favorites."})
+    
     else: 
     #   Delete the favorites
         user.favorited_albums.remove(album)
         db.session.add(user)
         db.session.commit()
-
-    return jsonify({"msg": "The album was in favorites. Deleted the album from favorites.", "data": data["id"]})
+        return jsonify({"msg": "The album was in favorites. Deleted the album from favorites.", "data": data["id"]})
+ 

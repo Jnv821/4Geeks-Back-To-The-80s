@@ -21,6 +21,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         .then(data => console.log(data))
         .catch(err => console.log(err))
       },
+      getFavorites: (token) => {
+        fetch(process.env.BACKEND_URL + '/api/albums',{
+          method: 'GET',
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => res.json())
+        .then(data => console.log("This is getFavorites Flux", data.favorites))
+        .catch(err => console.log(err))
+      },
+
       addFavorite: (newFavorite) => {
         const store = getStore();
         setStore({ favorites: [...store.favorites, newFavorite] });

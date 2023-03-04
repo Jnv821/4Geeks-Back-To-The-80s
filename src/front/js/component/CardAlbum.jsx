@@ -9,17 +9,23 @@ const CardAlbum = (props) => {
 
   useEffect(() => {
   if(props.favorites){
+    
     const favorited = props.favorites.find((fav) => {
       return fav.id === album.id
     })
-    console.log("This is:" , favorite)
-    if(favorited){
-      setFavorite(true)
+    
+    if(favorited == true){
+      setFavorite(true);
     } else {
-      setFavorite(false)
+      //actions.deleteFavorite(album.name);
+      setFavorite(false);
     }
-  }
-  }, [props])
+    console.log("The props:", props)
+  }}, [props])
+
+  useEffect(() => {
+    console.log("This is the setState for favorites:", favorite)
+  }, [favorite])
 
   if (album) {
     return (
@@ -31,15 +37,17 @@ const CardAlbum = (props) => {
             }`}
             onClick={(ev) => {
               console.log("click")
-              console.log(store.token)
+              if(props.handleRemove){
+                props.handleRemove(album.id)
+              }
               actions.handleFavorite(album.id, store.token)
-              
-              if (favorite === false) {
-                actions.addFavorite(album.name);
-                setFavorite(true);
-              } else if (favorite === true) {
+              actions.getFavorites(store.token)
+              if(!favorite){
+                //actions.addFavorite(album.name);
+                setFavorite((prev) => true);
+              } else {
                 actions.deleteFavorite(album.name);
-                setFavorite(false);
+                setFavorite((prev) => false);
               }
             }}
           >
@@ -54,21 +62,13 @@ const CardAlbum = (props) => {
         </div>
         <div className="card-body">
           <p className="card-text">
-            <div>
-              <p>
-                <b>{album.title}</b>
-              </p>
-            </div>
+            <b>{album.title}</b>
           </p>
           <p className="card-text">
-            <div>
-              <p>{album.author}</p>
-            </div>
+              {album.author}
           </p>
           <p className="card-text">
-            <div>
-              <p>{album.release_year}</p>
-            </div>
+              {album.release_year}
           </p>
         </div>
       </div>
