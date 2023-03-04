@@ -18,7 +18,7 @@ export const Profile = () => {
         fetch(process.env.BACKEND_URL + '/api' + url)
         .then(res => res.json())
         .then(data => { setUserData(data.user)
-                        setFavoriteData0((favoriteData) => [...favoriteData,data.favorites])   
+                        setFavoriteData0((favoriteData) => favoriteData.concat(data.favorites))   
         })
         .catch(err => console.log(err))
     }, []);
@@ -28,7 +28,7 @@ export const Profile = () => {
     }, [userData])
     
     const favoriteList = favoriteData.map((favorite) => {
-        return(<CardAlbum key={favorite.id} album={favorite}/>)
+        return(<CardAlbum key={favorite.id} album={favorite} favorites={favoriteData}/>)
     })
 
     return (
