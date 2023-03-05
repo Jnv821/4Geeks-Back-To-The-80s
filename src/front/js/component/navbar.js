@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     if (!store.token) return;
     actions.getUser(store.token);
-  }, [store.token, store.uid]);
+  }, [store.token, store.uid, store.username]);
   
     return (
       <div className="container-navbar">
@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="ml-auto-aboutus">
           <div className="dropdown">
             <Link className="aboutus"to="/aboutus">About us</Link>
-            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> My Profile</Link>
+            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> {store.username}</Link>
             <button
               className="btn btn-primary logout-btn"
               onClick={() => {
