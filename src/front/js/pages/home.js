@@ -18,7 +18,6 @@ export const Home = () => {
 
     // fetch de la data de albums
     useEffect(() => {
-        console.log(store.token);
         const url = process.env.BACKEND_URL + "/api/albums";
         fetch(url, {
             method: "GET",
