@@ -13,7 +13,7 @@ const Section = (props) => {
         {props.decadeAlbums.map((album, index) => {
           return (
             <div className="col-xs-6 col-sm-4 col-md-2 col-lg-2" key={index}>
-              <CardAlbum className="CardAlbum" album={album} />
+              <CardAlbum className="CardAlbum" album={album} favorites={props.favorites} />
             </div>
           );
         })}

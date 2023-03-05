@@ -9,26 +9,25 @@ import "../../styles/profile.css";
 export const Profile = () => {
     const { store, actions } = useContext(Context);
     const [userData, setUserData] = useState({});
-    const [favoriteData, setFavoriteData0] =useState([])
+    const [favoriteData, setFavoriteData] = useState([]);
 
     const url = useLocation().pathname;
-    console.log(url)
     // Fetch the user data
     useEffect(() => {
         fetch(process.env.BACKEND_URL + '/api' + url)
         .then(res => res.json())
-        .then(data => { setUserData(data.user)
-                        setFavoriteData0(data.favorites)   
+        .then(data => { setUserData(data.user);
+                        setFavoriteData((prevState) => prevState.concat(data.favorites))   
         })
         .catch(err => console.log(err))
     }, []);
-
-    useEffect(() => {
-        console.log(userData)
-    }, [userData])
     
+    const handleRemove = (favid) => {
+        setFavoriteData((prevState) => prevState.filter((album) => album.id !== favid)) 
+    }
+
     const favoriteList = favoriteData.map((favorite) => {
-        return(<CardAlbum album={favorite}/>)
+        return(<CardAlbum key={favorite.id} album={favorite} favorites={favoriteData} handleRemove={handleRemove}/>)
     })
 
     return (
