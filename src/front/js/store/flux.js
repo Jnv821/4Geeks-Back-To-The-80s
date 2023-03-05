@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       favorites: [],
       token: null,
+      uid: null,
     },
 
     actions: {
@@ -18,7 +19,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
         
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+          console.log("This is the getUser", data)
+          setStore({uid: data})
+        })
         .catch(err => console.log(err))
       },
       getFavorites: (token) => {
@@ -31,6 +35,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
         .then(res => res.json())
         .then(data => console.log("This is getFavorites Flux", data.favorites))
+        .catch(err => console.log(err))
+      },
+
+      getUser: (token) => {
+        fetch(process.env.BACKEND_URL + '/api/user', {
+          method: 'GET',
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          setStore({uid: data.id})
+          console.log("This is getUser", data.id)
+        })
         .catch(err => console.log(err))
       },
 

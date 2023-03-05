@@ -146,4 +146,11 @@ def handle_favorites():
         db.session.add(user)
         db.session.commit()
         return jsonify({"msg": "The album was in favorites. Deleted the album from favorites.", "data": data["id"]})
- 
+
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    username = get_jwt_identity()
+    user = Users.query.filter_by(username=username).first()
+
+    return jsonify(user.serialize())
