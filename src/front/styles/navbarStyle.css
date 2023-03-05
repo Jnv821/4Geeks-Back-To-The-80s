@@ -2,7 +2,19 @@
 .navbar {
   padding-top: 0px;
   padding-bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.801);
 }
+a{
+  text-decoration: none;
+  background: rgb(86,143,246);
+  background: linear-gradient(0deg, rgba(86,143,246,1) 0%, rgba(166,2,155,1) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  padding-right: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+
 .main-logo {
   width: 100px;
   height: 60px;
@@ -17,3 +29,24 @@
   font-size: 16px;
   margin-top: 4px;
 }
+.ml-auto-aboutus{
+  margin-right: 8vw;
+}
+.aboutus{
+  margin-right: 20px;
+font-size: 20px;
+margin-top: 2%;
+}
+.logout-btn{
+  background-color: #5d2eeb;
+  width: 100px;
+}
+.btn-primary {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+.photo-cassette{
+  width: 38px;
+  padding-right: 8px;
+}
+
