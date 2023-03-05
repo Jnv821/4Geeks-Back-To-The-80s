@@ -12,7 +12,6 @@ export const Profile = () => {
     const [favoriteData, setFavoriteData] = useState([]);
 
     const url = useLocation().pathname;
-    console.log(url)
     // Fetch the user data
     useEffect(() => {
         fetch(process.env.BACKEND_URL + '/api' + url)
@@ -22,11 +21,6 @@ export const Profile = () => {
         })
         .catch(err => console.log(err))
     }, []);
-
-    useEffect(() => {
-        console.log(userData)
-        console.log(favoriteData)
-    }, [userData, favoriteData])
     
     const handleRemove = (favid) => {
         setFavoriteData((prevState) => prevState.filter((album) => album.id !== favid)) 

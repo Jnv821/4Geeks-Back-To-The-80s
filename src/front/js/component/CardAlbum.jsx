@@ -20,12 +20,7 @@ const CardAlbum = (props) => {
       //actions.deleteFavorite(album.name);
       setFavorite(false);
     }
-    console.log("The props:", props)
   }}, [props])
-
-  useEffect(() => {
-    console.log("This is the setState for favorites:", favorite)
-  }, [favorite])
 
   if (album) {
     return (
@@ -36,7 +31,6 @@ const CardAlbum = (props) => {
               favorite ? "selected" : null
             }`}
             onClick={(ev) => {
-              console.log("click")
               if(props.handleRemove){
                 props.handleRemove(album.id)
               }
