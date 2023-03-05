@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/single.css";
 import Navbar from "../component/navbar.js";
-import Footer from "../component/footer.js";
 
 export const Single = (props) => {
 
