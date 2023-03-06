@@ -95,9 +95,6 @@ export const Login = () => {
                   AQUÍ{" "}
                 </Link>
               </div>
-              <div className="login-footer">
-                <Footer></Footer>
-              </div>
             </>
           )}
         </div>
