@@ -8,19 +8,25 @@ const CardAlbum = (props) => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-  if(props.favorites){
-    
-    const favorited = props.favorites.find((fav) => {
-      return fav.id === album.id
-    })
-    
-    if(favorited == true){
-      setFavorite(true);
-    } else {
-      //actions.deleteFavorite(album.name);
-      setFavorite(false);
+    if (props.favorites) {
+      const favorited = props.favorites.find((fav) => {
+        return fav.id === album.id;
+      });
+
+      if (favorited == true) {
+        setFavorite(true);
+      } else {
+        //actions.deleteFavorite(album.name);
+        setFavorite(false);
+      }
+      if (props.favTrue === true) {
+        setFavorite(true);
+        console.log("favorito encontrado");
+      }
     }
-  }}, [props])
+  }, [props]);
+
+  console.log(favorite);
 
   if (album) {
     return (
@@ -31,17 +37,20 @@ const CardAlbum = (props) => {
               favorite ? "selected" : null
             }`}
             onClick={(ev) => {
-              if(props.handleRemove){
-                props.handleRemove(album.id)
+              if (props.handleRemove) {
+                props.handleRemove(album.id);
               }
-              actions.handleFavorite(album.id, store.token)
-              actions.getFavorites(store.token)
-              if(!favorite){
-                //actions.addFavorite(album.name);
+              actions.handleFavorite(album.id, store.token);
+              actions.getFavorites(store.token);
+              if (!favorite) {
+                actions.addFavorite(album.name);
                 setFavorite((prev) => true);
+                setFavorite(true);
+                console.log("marcado como favorito");
               } else {
                 actions.deleteFavorite(album.name);
                 setFavorite((prev) => false);
+                setFavorite(false);
               }
             }}
           >
@@ -58,12 +67,8 @@ const CardAlbum = (props) => {
           <p className="card-text">
             <b>{album.title}</b>
           </p>
-          <p className="card-text">
-              {album.author}
-          </p>
-          <p className="card-text">
-              {album.release_year}
-          </p>
+          <p className="card-text">{album.author}</p>
+          <p className="card-text">{album.release_year}</p>
         </div>
       </div>
     );
