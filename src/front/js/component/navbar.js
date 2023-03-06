@@ -8,18 +8,12 @@ import cassette from "../../img/cassette.png";
 const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(0)
 
   useEffect(() => {
     if(!store.token) return
     actions.getUser(store.token)
-    setUserId(store.uid);
-  }, [store.token])
+  }, [])
 
-  useEffect(() => {
-    console.log("This is user id", userId)
-  }, [userId])
-  
     return (
       <div className="container-navbar">
       <nav className="navbar navbar-light mb-3">
@@ -29,7 +23,7 @@ const Navbar = () => {
         <div className="ml-auto-aboutus">
           <div className="dropdown">
             <Link className="aboutus"to="/aboutus">About us</Link>
-            <Link className="aboutus" to={`/profile/${userId}`}><img className="photo-cassette" src={cassette} /> My Profile</Link>
+            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> My Profile</Link>
             <button
               className="btn btn-primary logout-btn"
               onClick={() => {
