@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/register.css";
+import { Footer } from "../component/footer";
 
 export const Register = () => {
   const { store, actions } = useContext(Context);
@@ -147,6 +148,9 @@ export const Register = () => {
           Create Account
         </button>
       </form>
+      <div className="register-footer">
+              <Footer></Footer>
+              </div> 
     </div>
   );
 };

@@ -5,6 +5,7 @@ import libros from "../../img/libro-biblioteca-libro-texto-abierto.jpg";
 import pc from "../../img/codigo.jpg";
 import "../../styles/about_us.css";
 import logo from "../../img/Back_to_80_logo.png";
+import { Footer } from "../component/footer";
 // card album will be a placeholder component for now.
 
 export const AboutUs = () => {
@@ -47,7 +48,10 @@ export const AboutUs = () => {
                 <img className="photo-project" src={logo} />
             </div>
           </div> 
-      </div>  
+      </div> 
+      <div className="aboutus-footer">
+              <Footer></Footer>
+              </div> 
       </div>
     </>
   );

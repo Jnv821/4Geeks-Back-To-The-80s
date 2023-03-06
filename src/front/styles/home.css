@@ -8,9 +8,12 @@
   margin-bottom: 20px;
 }
 .sectionTitle {
-  color: #dc3545;
+  background: linear-gradient(#56f6c6,#a6029b);
+  -webkit-background-clip: text;
+  color: transparent;
   padding-bottom: 8px;
   text-align: left;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .col-3 {
   width: 18rem;
