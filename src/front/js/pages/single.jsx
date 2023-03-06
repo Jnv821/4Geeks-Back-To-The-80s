@@ -5,96 +5,150 @@ import Navbar from "../component/navbar.js";
 import { Footer } from "../component/footer";
 
 export const Single = (props) => {
+  const url = useLocation().pathname;
+  const [spotifyToken, setSpotifyToken] = useState({});
+  const [albumData, setAlbumData] = useState({});
+  const [spotifyAlbumData, setSpotifyAlbumData] = useState({});
+  const [filteredAlbumData, setFilteredAlbumData] = useState({});
 
-const url = useLocation().pathname
-const [spotifyToken , setSpotifyToken] = useState({})
-const [albumData, setAlbumData] = useState({})
-const [spotifyAlbumData, setSpotifyAlbumData] = useState({})
-const [filteredAlbumData, setFilteredAlbumData] = useState({})
+  useEffect(() => {
+    // get the album data from our db
+    fetch(process.env.BACKEND_URL + "/api" + url)
+      .then((res) => res.json())
+      .then((data) => setAlbumData({ ...data }))
+      .catch((err) => console.log(err));
+  }, []);
 
-useEffect(() => {
-  // get the album data from our db
-  fetch(process.env.BACKEND_URL + "/api" + url)
-  .then(res => res.json())
-  .then(data => setAlbumData({...data}))
-  .catch(err => console.log(err))
-}, [])
+  useEffect(() => {
+    // get the token from our db
+    fetch(process.env.BACKEND_URL + "/api/token/spotify")
+      .then((res) => res.json())
+      .then((data) => setSpotifyToken({ ...data }))
+      .catch((err) => err);
+  }, []);
 
-useEffect(() => {
-  // get the token from our db
-  fetch(process.env.BACKEND_URL + "/api/token/spotify")
-  .then(res => res.json())
-  .then(data => setSpotifyToken({...data}))
-  .catch(err => err)
-}, [])
+  useEffect(() => {
+    // get the data from spotify
 
-useEffect(() => {
-  // get the data from spotify
+    if (!albumData) return;
 
-  if (!albumData) return; 
-
-  if(albumData.album){
-  console.log("Fetch is being done")
-  fetch(albumData.album.spotify_url, {
-    method: "GET",
-    headers: { 
-      "Authorization" : "Bearer " + spotifyToken.access_token
+    if (albumData.album) {
+      console.log("Fetch is being done");
+      fetch(albumData.album.spotify_url, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + spotifyToken.access_token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setSpotifyAlbumData({ ...data }))
+        .catch((err) => console.log(err));
     }
-  })
-  .then(res => res.json())
-  .then(data => setSpotifyAlbumData({...data}))
-  .catch(err => console.log(err))
-  }
+  }, [albumData, spotifyToken]);
 
+  // Logging for spotify data
+  useEffect(() => {
+    console.log(spotifyAlbumData);
+  }, [spotifyAlbumData]);
 
-}, [albumData, spotifyToken])
-
-// Logging for spotify data
-useEffect(() => {
-  console.log(spotifyAlbumData)
-}, [spotifyAlbumData])
-
-useEffect(() => {
-  if(spotifyAlbumData.artists){
-    for(let artist of spotifyAlbumData.artists){
-      const name = artist.name
-      setFilteredAlbumData({...filteredAlbumData, "artist": name}); 
+  useEffect(() => {
+    if (spotifyAlbumData.artists) {
+      for (let artist of spotifyAlbumData.artists) {
+        const name = artist.name;
+        setFilteredAlbumData({ ...filteredAlbumData, artist: name });
+      }
+      setFilteredAlbumData((filteredAlbumData) => ({
+        ...filteredAlbumData,
+        name: spotifyAlbumData.name,
+      }));
+      setFilteredAlbumData((filteredAlbumData) => ({
+        ...filteredAlbumData,
+        popularity: spotifyAlbumData.popularity,
+      }));
+      setFilteredAlbumData((filteredAlbumData) => ({
+        ...filteredAlbumData,
+        release_date: spotifyAlbumData.release_date,
+      }));
+      setFilteredAlbumData((filteredAlbumData) => ({
+        ...filteredAlbumData,
+        total_tracks: spotifyAlbumData.total_tracks,
+      }));
+      setFilteredAlbumData((filteredAlbumData) => ({
+        ...filteredAlbumData,
+        image: spotifyAlbumData.images[0].url,
+      }));
     }
-    setFilteredAlbumData((filteredAlbumData) => ({...filteredAlbumData, "name": spotifyAlbumData.name}));
-    setFilteredAlbumData((filteredAlbumData) => ({...filteredAlbumData, "popularity": spotifyAlbumData.popularity}));
-    setFilteredAlbumData((filteredAlbumData) => ({...filteredAlbumData, "release_date": spotifyAlbumData.release_date}));
-    setFilteredAlbumData((filteredAlbumData) => ({...filteredAlbumData, "total_tracks": spotifyAlbumData.total_tracks}));
-    setFilteredAlbumData((filteredAlbumData) => ({...filteredAlbumData, "image": spotifyAlbumData.images[0].url}))
-  }
+  }, [spotifyAlbumData]);
 
-}, [spotifyAlbumData])
-
-useEffect(() => {
-  console.log(filteredAlbumData)
-}, [filteredAlbumData])
+  useEffect(() => {
+    console.log(filteredAlbumData);
+  }, [filteredAlbumData]);
   return (
     <>
       <Navbar />
       <div className="container-single">
         <div className="single-photo">
-          <img src={filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>} width="500" height="500" />
+          <img
+            src={
+              filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>
+            }
+            width="500"
+            height="500"
+          />
         </div>
-          <div className="container-information">
-              <div className="information-album"><h3 >- ARTISTA : </h3></div><div className="album-data">{filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>} </div>
-                <br />
-              <div className="information-album"><h3 >- ALBUM : </h3></div><div className="album-data">{filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- POPULARIDAD : </h3></div><div className="album-data">{filteredAlbumData.popularity ? filteredAlbumData.popularity: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- FECHA DE LANZAMIENTO : </h3></div><div className="album-data">{filteredAlbumData.release_date ? filteredAlbumData.release_date: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- NÚMERO DE CANCIONES: </h3></div><div className="album-data">{filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</div>
+        <div className="container-information">
+          <div className="information-album">
+            <h3>- ARTISTA : </h3>
           </div>
-          <div className="login-footer">
-              <Footer></Footer>
-              </div>
+          <div className="album-data">
+            {filteredAlbumData.artist ? (
+              filteredAlbumData.artist
+            ) : (
+              <p>LOADING</p>
+            )}{" "}
+          </div>
+          <br />
+          <div className="information-album">
+            <h3>- ALBUM : </h3>
+          </div>
+          <div className="album-data">
+            {filteredAlbumData.name ? filteredAlbumData.name : <p>LOADING</p>}
+          </div>
+          <br />
+          <div className="information-album">
+            <h3>- POPULARIDAD : </h3>
+          </div>
+          <div className="album-data">
+            {filteredAlbumData.popularity ? (
+              filteredAlbumData.popularity
+            ) : (
+              <p>LOADING</p>
+            )}
+          </div>
+          <br />
+          <div className="information-album">
+            <h3>- FECHA DE LANZAMIENTO : </h3>
+          </div>
+          <div className="album-data">
+            {filteredAlbumData.release_date ? (
+              filteredAlbumData.release_date
+            ) : (
+              <p>LOADING</p>
+            )}
+          </div>
+          <br />
+          <div className="information-album">
+            <h3>- NÚMERO DE CANCIONES: </h3>
+          </div>
+          <div className="album-data">
+            {filteredAlbumData.total_tracks ? (
+              filteredAlbumData.total_tracks
+            ) : (
+              <p>LOADING</p>
+            )}
+          </div>
+        </div>
       </div>
-        
     </>
   );
 };

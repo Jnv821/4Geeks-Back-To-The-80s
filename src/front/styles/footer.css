@@ -4,3 +4,14 @@ p {
 .text-center {
   margin: 0px auto;
 }
+footer {
+  color: #56f6c6;
+}
+.login-footer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 50rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}

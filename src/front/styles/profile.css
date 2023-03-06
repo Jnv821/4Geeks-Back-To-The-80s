@@ -1,20 +1,25 @@
-.profile-img{
-    width: 120px;
-    height: 120px;
+.container-profile {
+  height: 100vw;
+  max-height: 1050px;
 }
-.profile-footer{
-    padding-top: 18rem;
-    flex: auto;
-  }
-  .username{
-    background: linear-gradient(#56f6c6,#a6029b);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+}
+.profile-footer {
+  padding-top: 18rem;
+  flex: auto;
+}
+.username {
+  background: linear-gradient(#56f6c6, #a6029b);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
 @media screen and (max-width: 768px) {
-    .profile-img{
-        width: 60px;
-        height: 60px;
-    }
+  .profile-img {
+    width: 60px;
+    height: 60px;
+  }
 }

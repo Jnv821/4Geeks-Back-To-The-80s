@@ -9,9 +9,7 @@ import { Profile } from "./pages/profile.jsx";
 import injectContext from "./store/appContext";
 import { Register } from "./pages/Register.jsx";
 import { AboutUs } from "./pages/aboutUs.jsx";
-
-import { Footer } from "./component/footer";
-
+import { Footer } from "./component/footer.js";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -30,6 +28,7 @@ const Layout = () => {
           <Route element={<AboutUs />} path="/aboutus" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
+        <Footer />
       </ScrollToTop>
     </BrowserRouter>
   );

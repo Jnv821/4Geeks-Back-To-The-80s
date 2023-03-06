@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../component/footer";
 
-
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const [username, setUsername] = useState("");
@@ -97,13 +96,12 @@ export const Login = () => {
                 </Link>
               </div>
               <div className="login-footer">
-              <Footer></Footer>
+                <Footer></Footer>
               </div>
             </>
           )}
         </div>
       </div>
     </div>
-    
   );
 };
