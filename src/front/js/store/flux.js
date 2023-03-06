@@ -20,12 +20,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
         
         .then(res => res.json())
-        .then(data => {
-          console.log("This is the getUser", data)
-          setStore({uid: data})
-        })
+        .then(data => { console.log(data)})
         .catch(err => console.log(err))
       },
+      
       getFavorites: (token) => {
         fetch(process.env.BACKEND_URL + '/api/albums',{
           method: 'GET',
