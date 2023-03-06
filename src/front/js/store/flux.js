@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       token: null,
       uid: null,
+      username: null
     },
 
     actions: {
@@ -111,7 +112,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           console.log("This came from the backend", data);
           sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
+          setStore({ token: data.access_token} );
+          setStore({ username: username} );
           return true;
         } catch (error) {
           console.log("There was an error login in");
