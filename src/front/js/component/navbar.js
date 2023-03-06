@@ -4,11 +4,10 @@ import { Context } from "../store/appContext"; // trsaigo todos los datos y func
 import logo from "../../img/Back_to_80_logo.png";
 import cassette from "../../img/cassette.png";
 
-
 const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if(!store.token) return
     actions.getUser(store.token)
@@ -23,7 +22,7 @@ const Navbar = () => {
         <div className="ml-auto-aboutus">
           <div className="dropdown">
             <Link className="aboutus"to="/aboutus">About us</Link>
-            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> My Profile</Link>
+            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> {store.username}</Link>
             <button
               className="btn btn-primary logout-btn"
               onClick={() => {
