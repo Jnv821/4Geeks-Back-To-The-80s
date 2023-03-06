@@ -82,7 +82,7 @@ def generate_token(client_id, secret):
     # Make the request and its options
     headers =  {
         'Authorization': f"Basic {ready_token}",
-        'Contet-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
     data = {
         'grant_type': 'client_credentials'
@@ -107,7 +107,7 @@ def run_every_n_seconds(delay, task):
 # This line is for debugging and development purposes only. 
 # Once the code is ready for production we will delete this conditional.
 # Only change spotify_Connection to true or false.
-spotify_connection = False
+spotify_connection = True
 
 if spotify_connection == True:
     # Generate token on startup
