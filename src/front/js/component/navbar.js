@@ -7,13 +7,12 @@ import cassette from "../../img/cassette.png";
 const Navbar = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(0);
-
-  useEffect(() => {
-    if (!store.token) return;
-    actions.getUser(store.token);
-  }, [store.token, store.uid, store.username]);
   
+  useEffect(() => {
+    if(!store.token) return
+    actions.getUser(store.token)
+  }, [])
+
     return (
       <div className="container-navbar">
       <nav className="navbar navbar-light mb-3">
