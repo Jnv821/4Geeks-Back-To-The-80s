@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import CardAlbum from "../component/CardAlbum.jsx";
 import Navbar from "../component/navbar.js";
 import "../../styles/profile.css";
+import { Footer } from "../component/footer";
 // card album will be a placeholder component for now.
 
 export const Profile = () => {
@@ -44,17 +45,20 @@ export const Profile = () => {
                             />
                         </div>
                         <div className="col-8 mx-4">
-                            <h1>{userData.username}</h1>
-                            <p>
+                            <div className="username"><h1>{userData.username}</h1></div>
+                            <p className="text-white">
                                 {userData.description}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div className="row">
-                    <h1 className="text-white">Favorite Albums</h1>
+                <div className="username"> <h1>Favorite Albums</h1></div>
                     {favoriteData ? favoriteList : ""}
                 </div>
+                <div className="profile-footer">
+              <Footer></Footer>
+              </div> 
             </div>
         </>
     );

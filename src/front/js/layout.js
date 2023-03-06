@@ -11,8 +11,7 @@ import { Register } from "./pages/Register.jsx";
 import { AboutUs } from "./pages/aboutUs.jsx";
 
 import { Footer } from "./component/footer";
-import { Backto80s } from "./pages/Backto80s.jsx";
-import Navbar from "./component/navbar";
+
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -31,7 +30,6 @@ const Layout = () => {
           <Route element={<AboutUs />} path="/aboutus" />
           <Route element={<h1>Not found!</h1>} />
         </Routes>
-        <Footer />
       </ScrollToTop>
     </BrowserRouter>
   );

@@ -3,7 +3,8 @@ import { Context } from "../store/appContext";
 import "../../styles/login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import logo from "../../img/Back_to_80_logo.png";
+import { Footer } from "../component/footer";
+
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -92,13 +93,17 @@ export const Login = () => {
               <div className="register">
                 Si todavía no tienes cuenta, regístrate{" "}
                 <Link className="link-register" to="/register">
-                  aquí{" "}
+                  AQUÍ{" "}
                 </Link>
+              </div>
+              <div className="login-footer">
+              <Footer></Footer>
               </div>
             </>
           )}
         </div>
       </div>
     </div>
+    
   );
 };
