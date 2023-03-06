@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/single.css";
 import Navbar from "../component/navbar.js";
+import { Footer } from "../component/footer";
 
 export const Single = (props) => {
 
@@ -79,16 +80,19 @@ useEffect(() => {
           <img src={filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>} width="500" height="500" />
         </div>
           <div className="container-information">
-              <div className="information-album"><h3 >- ARTISTA : <br/>{filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>} </h3></div>
+              <div className="information-album"><h3 >- ARTISTA : </h3></div><div className="album-data">{filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>} </div>
                 <br />
-              <div className="information-author"><h3 >- ALBUM : <br/>{filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</h3></div>
+              <div className="information-album"><h3 >- ALBUM : </h3></div><div className="album-data">{filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</div>
                 <br />
-              <div className="information-year"><h3 >- POPULARIDAD : <br/>{filteredAlbumData.popularity ? filteredAlbumData.popularity: <p>LOADING</p>}</h3></div>
+              <div className="information-album"><h3 >- POPULARIDAD : </h3></div><div className="album-data">{filteredAlbumData.popularity ? filteredAlbumData.popularity: <p>LOADING</p>}</div>
                 <br />
-              <div className="information-year"><h3 >- FECHA DE LANZAMIENTO : <br/>{filteredAlbumData.release_date ? filteredAlbumData.release_date: <p>LOADING</p>}</h3></div>
+              <div className="information-album"><h3 >- FECHA DE LANZAMIENTO : </h3></div><div className="album-data">{filteredAlbumData.release_date ? filteredAlbumData.release_date: <p>LOADING</p>}</div>
                 <br />
-              <div className="information-year"><h3 >- NÚMERO DE CANCIONES: <br/>{filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</h3></div>
+              <div className="information-album"><h3 >- NÚMERO DE CANCIONES: </h3></div><div className="album-data">{filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</div>
           </div>
+          <div className="login-footer">
+              <Footer></Footer>
+              </div>
       </div>
         
     </>

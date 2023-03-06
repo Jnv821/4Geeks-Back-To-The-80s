@@ -1,37 +1,25 @@
 
-.information-album, .information-author, .information-year{
-    color: #56f6c6;
+.information-album{
+  background: rgb(86,143,246);
+  background: linear-gradient(0deg, rgba(86,143,246,1) 0%, rgba(166,2,155,1) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   
+}
+.album-data{
+  color: antiquewhite;
 }
 .single-photo{
-    float: left;
-    width: 50%;
-    margin-top: 5%;
-  padding-left: 10%;
+    margin-top: 4rem;
+  padding-left: 8rem;
   font-size: 1.2rem;
 }
 .container-information{
-    float: right;
-    width: 50%;
-    margin-bottom: 50%;
-    margin-top: 5%;
+  margin-top: 4rem;
+   padding-left: 2rem;
     font-size: 1.2rem;
 }
 .container-single{
-    width: 85%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
-@media screen and (max-width: 768px) {
-    .container-single {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .container-single {
-      grid-template-columns: 1fr;
-    }
-  }

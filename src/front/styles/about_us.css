@@ -19,6 +19,7 @@
 .texto-history, .texto-mission, .texto-project{
     color: aliceblue;
 }  
+
 .history, .mission, .project{
     background: linear-gradient(#56f6c6,#a6029b);
     -webkit-background-clip: text;
@@ -34,3 +35,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .aboutus-footer{
+    padding-top: 4rem;
+    flex: auto;
+  }
+
+
