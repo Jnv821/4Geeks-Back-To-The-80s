@@ -4,57 +4,12 @@
     -webkit-background-clip: text;
     color: transparent;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: xx-large;
   }
  p.aboutus{
     color: antiquewhite;
   }
   
 
-
-
-
-
-
-/*.photo-history,.photo-project, .photo-mission{
-    width: 25rem;
-    border-radius: 5%;  
-}
-.container-about_us {
-    width: 100rem;
-    margin: 3%;
-}
-.container-our_mission{
-    width: 100rem;
-    margin: 3%;
-}
-.texto-history, .container-photo, .texto-mission, .photo-mission {
-    display: inline-block;
-    width: 45%; 
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center; 
-  }
-.texto-history, .texto-mission, .texto-project{
-    color: aliceblue;
-}  
-
-.history, .mission, .project{
-    background: linear-gradient(#56f6c6,#a6029b);
-    -webkit-background-clip: text;
-    color: transparent; 
-}
-.container-project{
-    text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.vista-about_us {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .aboutus-footer{
-    padding-top: 4rem;
-    flex: auto;
-  }*/
 
 

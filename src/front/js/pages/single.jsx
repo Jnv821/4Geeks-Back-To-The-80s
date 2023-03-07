@@ -88,12 +88,8 @@ useEffect(() => {
                 <p className="information-album">NÚMERO DE CANCIONES: <span className="single-span" > {filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</span> </p>
           </div>
         </div>
-      </div>
-      <div className="container">
-        <div className="row "> 
+      </div> 
           <Footer></Footer>   
-        </div>
-      </div>
     </>
   );
 };
