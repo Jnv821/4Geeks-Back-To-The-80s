@@ -9,7 +9,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
     actions: {
       handleFavorite: (id, token) => {
-        console.log(token)
         fetch(process.env.BACKEND_URL + '/api/favorites', {
           method: 'POST',
           headers: {
@@ -48,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         .then(res => res.json())
         .then(data => {
           setStore({uid: data.id})
-          console.log("This is getUser", data.id)
         })
         .catch(err => console.log(err))
       },
@@ -56,29 +54,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       addFavorite: (newFavorite) => {
         const store = getStore();
         setStore({ favorites: [...store.favorites, newFavorite] });
-        console.log("Added to favorites!");
-        console.log(newFavorite);
       },
 
       deleteFavorite: (item) => {
         const store = getStore();
         let newFav = store.favorites.filter((i) => item !== i);
         setStore({ favorites: newFav });
-        console.log("Deleted from favorites!");
       },
 
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
-        console.log(
-          "Aplication just loaded, synching the local session storage token"
-        );
         if (token && token !== "" && token !== undefined)
           setStore({ token: token });
       },
 
       logout: () => {
         sessionStorage.removeItem("token");
-        console.log("Login out");
         setStore({ token: null });
       },
 
@@ -108,13 +99,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const data = await resp.json();
-          console.log("This came from the backend", data);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token} );
           setStore({ username: username} );
           return true;
         } catch (error) {
-          console.log("There was an error login in");
         }
       },
     },

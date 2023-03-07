@@ -1,25 +1,13 @@
-
 .information-album{
   background: rgb(86,143,246);
   background: linear-gradient(0deg, rgba(86,143,246,1) 0%, rgba(166,2,155,1) 100%);
   -webkit-background-clip: text;
   color: transparent;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: x-large;
 }
-.album-data{
+.single-span{
   color: antiquewhite;
 }
-.single-photo{
-    margin-top: 4rem;
-  padding-left: 8rem;
-  font-size: 1.2rem;
-}
-.container-information{
-  margin-top: 4rem;
-   padding-left: 2rem;
-    font-size: 1.2rem;
-}
-.container-single{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
+
+
