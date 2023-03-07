@@ -1,4 +1,21 @@
-.photo-history,.photo-project, .photo-mission{
+.aboutus-title{
+    background: rgb(86,143,246);
+    background: linear-gradient(0deg, rgba(86,143,246,1) 0%, rgba(166,2,155,1) 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+ p.aboutus{
+    color: antiquewhite;
+  }
+  
+
+
+
+
+
+
+/*.photo-history,.photo-project, .photo-mission{
     width: 25rem;
     border-radius: 5%;  
 }
@@ -38,6 +55,6 @@
   .aboutus-footer{
     padding-top: 4rem;
     flex: auto;
-  }
+  }*/
 
 

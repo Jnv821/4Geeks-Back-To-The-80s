@@ -77,27 +77,23 @@ useEffect(() => {
       <Navbar />
       <div className="container">
         <div className="row mt-5">
-        <div className="single-photo col-lg-6 ">
-          <img src={filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>} width="500" height="500" />
-        </div>
-          <div className="single-information col-lg-6 mt-5">
-              <div className="information-album"><h3 >- ARTISTA : </h3></div><div className="album-data">{filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>} </div>
-                <br />
-              <div className="information-album"><h3 >- ALBUM : </h3></div><div className="album-data">{filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- POPULARIDAD : </h3></div><div className="album-data">{filteredAlbumData.popularity ? filteredAlbumData.popularity: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- FECHA DE LANZAMIENTO : </h3></div><div className="album-data">{filteredAlbumData.release_date ? filteredAlbumData.release_date: <p>LOADING</p>}</div>
-                <br />
-              <div className="information-album"><h3 >- NÚMERO DE CANCIONES: </h3></div><div className="album-data">{filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</div>
+          <div className="col-lg-6">
+            <img className="img-fluid" src={filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>} />
           </div>
-          </div>
-          <div className="row ">
-          <div className="single-footer col-xs-12 text-center ">
-              <Footer></Footer>
-              </div>
+          <div className="col-lg-6">
+                <p className="information-album">ARTISTA: <span className="single-span" > {filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>}</span> </p>
+                <p className="information-album">ALBUM: <span className="single-span" > {filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</span> </p>
+                <p className="information-album">POPULARIDAD: <span className="single-span" > {filteredAlbumData.popularity ? filteredAlbumData.popularity: <p>LOADING</p>}</span> </p>
+                <p className="information-album">FECHA DE LANZAMIENTO: <span className="single-span" > {filteredAlbumData.release_date ? filteredAlbumData.release_date: <p>LOADING</p>}</span> </p>
+                <p className="information-album">NÚMERO DE CANCIONES: <span className="single-span" > {filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</span> </p>
           </div>
         </div>
+      </div>
+      <div className="container">
+        <div className="row "> 
+          <Footer></Footer>   
+        </div>
+      </div>
     </>
   );
 };
