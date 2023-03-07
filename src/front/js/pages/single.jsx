@@ -75,11 +75,12 @@ useEffect(() => {
   return (
     <>
       <Navbar />
-      <div className="container-single">
-        <div className="single-photo">
+      <div className="container">
+        <div className="row mt-5">
+        <div className="single-photo col-lg-6 ">
           <img src={filteredAlbumData.image ? filteredAlbumData.image : <p>LOADING</p>} width="500" height="500" />
         </div>
-          <div className="container-information">
+          <div className="single-information col-lg-6 mt-5">
               <div className="information-album"><h3 >- ARTISTA : </h3></div><div className="album-data">{filteredAlbumData.artist ? filteredAlbumData.artist: <p>LOADING</p>} </div>
                 <br />
               <div className="information-album"><h3 >- ALBUM : </h3></div><div className="album-data">{filteredAlbumData.name ? filteredAlbumData.name: <p>LOADING</p>}</div>
@@ -90,11 +91,13 @@ useEffect(() => {
                 <br />
               <div className="information-album"><h3 >- NÚMERO DE CANCIONES: </h3></div><div className="album-data">{filteredAlbumData.total_tracks ? filteredAlbumData.total_tracks: <p>LOADING</p>}</div>
           </div>
-          <div className="login-footer">
+          </div>
+          <div className="row ">
+          <div className="single-footer col-xs-12 text-center ">
               <Footer></Footer>
               </div>
-      </div>
-        
+          </div>
+        </div>
     </>
   );
 };

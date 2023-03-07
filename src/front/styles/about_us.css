@@ -1,17 +1,18 @@
 .photo-history,.photo-project, .photo-mission{
-    width: 400px;
+    width: 25rem;
     border-radius: 5%;  
 }
-
-.container-about_us, .container-our_mission{
-    width: 100%;
-    margin-left: 15%;
-    margin-right: 15%;
+.container-about_us {
+    width: 100rem;
+    margin: 3%;
+}
+.container-our_mission{
+    width: 100rem;
     margin: 3%;
 }
 .texto-history, .container-photo, .texto-mission, .photo-mission {
     display: inline-block;
-    width: 45%; /* ajusta el ancho de los divs según tus necesidades */
+    width: 45%; 
     padding: 10px;
     box-sizing: border-box;
     text-align: center; 
@@ -33,7 +34,6 @@
 .vista-about_us {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
   .aboutus-footer{
     padding-top: 4rem;
