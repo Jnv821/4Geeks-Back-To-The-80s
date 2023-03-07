@@ -34,7 +34,6 @@ useEffect(() => {
   if (!albumData) return; 
 
   if(albumData.album){
-  console.log("Fetch is being done")
   fetch(albumData.album.spotify_url, {
     method: "GET",
     headers: { 
@@ -51,7 +50,6 @@ useEffect(() => {
 
 // Logging for spotify data
 useEffect(() => {
-  console.log(spotifyAlbumData)
 }, [spotifyAlbumData])
 
 useEffect(() => {
@@ -70,7 +68,6 @@ useEffect(() => {
 }, [spotifyAlbumData])
 
 useEffect(() => {
-  console.log(filteredAlbumData)
 }, [filteredAlbumData])
   return (
     <>

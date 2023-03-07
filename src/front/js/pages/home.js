@@ -34,8 +34,6 @@ export const Home = () => {
             .catch((err) => console.error(err));
     }, []);
 
-    console.log(masterList);
-
     if (masterList != undefined) {
         let sections = [];
         for (let year = 1980; year <= 1989; year++) {
