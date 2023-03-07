@@ -11,8 +11,6 @@ export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log("This is your token", store.token);
-
   const handleClick = () => {
     actions.login(username, password);
   };
@@ -56,7 +54,6 @@ export const Login = () => {
                   onChange={(ev) => setUsername(ev.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === "Enter") {
-                      console.log("Enter key pressed!");
                       handleClick();
                     }
                   }}
@@ -74,7 +71,6 @@ export const Login = () => {
                   onChange={(ev) => setPassword(ev.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === "Enter") {
-                      console.log("Enter key pressed!");
                       handleClick();
                     }
                   }}

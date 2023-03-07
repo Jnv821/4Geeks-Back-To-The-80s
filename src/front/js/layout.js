@@ -10,8 +10,6 @@ import injectContext from "./store/appContext";
 import { Register } from "./pages/Register.jsx";
 import { AboutUs } from "./pages/aboutUs.jsx";
 
-import { Footer } from "./component/footer";
-
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";

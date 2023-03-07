@@ -52,7 +52,7 @@ export const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                 <div className="username"> <h1>Favorite Albums</h1></div>
                     {favoriteData ? favoriteList : ""}
                 </div>
