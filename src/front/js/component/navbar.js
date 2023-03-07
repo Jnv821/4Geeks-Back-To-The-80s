@@ -15,26 +15,29 @@ const Navbar = () => {
 
     return (
       <div className="container-navbar">
-      <nav className="navbar navbar-light mb-3">
-        <Link to="/home">
-          <img className="main-logo" src={logo} />
-        </Link>
-        <div className="ml-auto-aboutus">
-          <div className="dropdown">
-            <Link className="aboutus"to="/aboutus">About us</Link>
-            <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> {store.username}</Link>
-            <button
-              className="btn btn-primary logout-btn"
-              onClick={() => {
-                actions.logout();
-                navigate("/login");
-              }}
-            >
-              Log out
-            </button>
-          </div>
+        <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <Link to="/home" className="navbar-brand">
+            <img className="main-logo" src={logo} />
+          </Link>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon">☰</span>
+          </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item my-2">
+              <Link className="aboutus"to="/aboutus">About us</Link>
+            </li>
+            <li className="nav-item my-2">
+              <Link className="aboutus" to={`/profile/${store.uid}`}><img className="photo-cassette" src={cassette} /> {store.username}</Link>
+            </li>
+            <li className="nav-item my-2">
+              <Link className="aboutus" to="/login" onClick={() => actions.logout()}>Log out</Link>
+            </li>
+          </ul>
         </div>
-      </nav>
+  </div>
+</nav>
       </div>
     );
   } ;
