@@ -1,6 +1,9 @@
-p{
+.footer {
+    margin: auto;
+  }
+  .footer p {
     margin-bottom: 0;
-}
-.text-center{
-    margin: 0px auto;
-}
+    justify-content: center;
+    color: #56f6c6;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
