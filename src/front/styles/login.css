@@ -1,85 +1,81 @@
-.form-login {
-  text-align: center;
-  flex: 0 0 auto;
-  width: 35%;
-  margin: auto;
-  display: inline-table;
-}
-.landing-page{
-  background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(226,70,252,0.7371323529411764) 100%);
-  width: 100%;
-  display: flex;
+.landing-page {
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(226, 70, 252, 0.7371323529411764) 100%
+  );
   justify-content: center;
-  height: 110vh;
+  height: 92vh;
+  vertical-align: center;
 }
-.back-to-the-80, .container-login{
-  display: inline-block;
-  width: 45%; /* ajusta el ancho de los divs según tus necesidades */
+.back-to-the-80,
+.container-login {
+  width: 80%; /* ajusta el ancho de los divs según tus necesidades */
   padding: 10px;
-  box-sizing: border-box
 }
-.h4{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+h4 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #56f6c6;
 }
 .h-100 {
   background: black;
 }
-footer {
-  color: #56f6c6;
-}
 
-h4 {
-  padding-bottom: 5%;
-  color: #56f6c6;
-}
 .sign {
   padding-top: 5%;
 }
 
-.btn-login{
-    background-color: #56F6C6; 
-    border-radius: 15px;
-    height: 40px; 
-    width: 100px;
-   
+.btn-login {
+  background-color: #56f6c6;
+  border-radius: 15px;
+  height: 40px;
+  width: 100px;
 }
-.register{
-    padding-top: 1.5rem;
-    color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}   
-.container-login{
-    margin-top: 10%;
-    margin-bottom: 2%;
-    height: 760px;
+.register {
+  padding-top: 1.5rem;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.link-register{
+.link-register {
   color: #240292;
 }
-.back-to-the-80{
+.back-to-the-80 {
   font-size: 4.5rem;
-  background: rgb(36,2,146);
-  background: radial-gradient(circle, rgba(36,2,146,1) 0%, rgba(4,10,47,1) 100%);
-    -webkit-background-clip: text;
-    color: transparent;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-top: 10%;
-    margin-left: 5;
-    flex: 1;
+  background: rgb(36, 2, 146);
+  background: radial-gradient(
+    circle,
+    rgba(36, 2, 146, 1) 0%,
+    rgba(4, 10, 47, 1) 100%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  flex: 1;
 }
-.name-back{
-  font-size: 4.8rem;
+.name-back {
+  font-size: 100%;
 }
-.description-landing{
+.description-landing {
   font-size: 1.8rem;
 }
-.login-footer{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-top: 50rem;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+.container-login {
+  margin: auto;
+}
+
+.login-title {
+  margin: auto;
+  margin-top: 2rem;
+}
+.container-login {
+  margin-top: 0px;
+  margin-bottom: 2%;
+}
+.form-login {
+  text-align: center;
+  width: 80%;
+  max-width: 30rem;
+  margin: auto;
 }
