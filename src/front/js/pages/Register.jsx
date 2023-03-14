@@ -58,15 +58,6 @@ export const Register = () => {
     }
   };
 
-  useEffect(() => {
-    console.table({
-      username: username,
-      email: email,
-      password: password,
-      description: description,
-    });
-  }, [username, email, password, description]);
-
   return (
     <div className="container-register">
       <form
@@ -148,8 +139,8 @@ export const Register = () => {
         </button>
       </form>
       <div className="register-footer">
-              <Footer></Footer>
-              </div> 
+        <Footer></Footer>
+      </div>
     </div>
   );
 };
